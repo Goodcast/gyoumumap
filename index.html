@@ -1,0 +1,818 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found]){display:none!important}</style></head><body>
+<title>エンジニア派遣事業部 業務マップ</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap">
+<style>
+  :root {
+    --bg: #F2F5F9;
+    --surface: #FFFFFF;
+    --border: #DDE3ED;
+    --text: #1A2B4A;
+    --text-muted: #5A6A80;
+    --l1-bg: #1A2B4A;
+    --l1-text: #FFFFFF;
+    --l1-accent: #4A90E2;
+    --l2-bg: #2E5FA3;
+    --l2-text: #FFFFFF;
+    --l3-bg: #EAF1FB;
+    --l3-text: #1A2B4A;
+    --l3-border: #B8D0F0;
+    --l4-bg: #F7F9FD;
+    --l4-text: #3A4F6E;
+    --l4-border: #D5E3F5;
+    --shadow: 0 2px 8px rgba(26,43,74,0.08);
+    --tag-todo: #E8F0FE;
+    --tag-todo-text: #2E5FA3;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0F1923;
+      --surface: #1A2535;
+      --border: #2A3A52;
+      --text: #E2EAF4;
+      --text-muted: #7A93B0;
+      --l1-bg: #1E3560;
+      --l1-text: #E2EAF4;
+      --l1-accent: #5FA8FF;
+      --l2-bg: #1D4080;
+      --l2-text: #C8DEFF;
+      --l3-bg: #162640;
+      --l3-text: #C0D8F0;
+      --l3-border: #2A4A72;
+      --l4-bg: #111D2E;
+      --l4-text: #8AABC8;
+      --l4-border: #1E3050;
+      --shadow: 0 2px 8px rgba(0,0,0,0.3);
+      --tag-todo: #1A2E50;
+      --tag-todo-text: #5FA8FF;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #0F1923;
+    --surface: #1A2535;
+    --border: #2A3A52;
+    --text: #E2EAF4;
+    --text-muted: #7A93B0;
+    --l1-bg: #1E3560;
+    --l1-text: #E2EAF4;
+    --l1-accent: #5FA8FF;
+    --l2-bg: #1D4080;
+    --l2-text: #C8DEFF;
+    --l3-bg: #162640;
+    --l3-text: #C0D8F0;
+    --l3-border: #2A4A72;
+    --l4-bg: #111D2E;
+    --l4-text: #8AABC8;
+    --l4-border: #1E3050;
+    --shadow: 0 2px 8px rgba(0,0,0,0.3);
+    --tag-todo: #1A2E50;
+    --tag-todo-text: #5FA8FF;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 32px 24px 64px;
+  }
+
+  header {
+    max-width: 900px;
+    margin: 0 auto 32px;
+  }
+
+  header h1 {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: 0.02em;
+  }
+
+  header p {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 6px;
+  }
+
+  .legend {
+    display: flex;
+    gap: 16px;
+    margin-top: 14px;
+    flex-wrap: wrap;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  .legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
+
+  .tree {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .l1 {
+    background: var(--l1-bg);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+
+  .l1-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 18px;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .l1-num {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--l1-accent);
+    letter-spacing: 0.1em;
+    min-width: 24px;
+  }
+
+  .l1-label {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--l1-text);
+    flex: 1;
+  }
+
+  .l1-tag-todo {
+    font-size: 11px;
+    padding: 3px 10px;
+    background: rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.7);
+    border-radius: 20px;
+    font-weight: 500;
+  }
+
+  .chevron {
+    color: var(--l1-accent);
+    font-size: 14px;
+    transition: transform 0.2s;
+  }
+
+  .l1.open .chevron { transform: rotate(90deg); }
+
+  .l1-body {
+    display: none;
+    padding: 0 16px 16px;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .l1.open .l1-body { display: flex; }
+
+  .l2 {
+    background: var(--l2-bg);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .l2-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 11px 14px;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .l2-bar {
+    width: 3px;
+    height: 16px;
+    background: var(--l1-accent);
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  .l2-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--l2-text);
+    flex: 1;
+  }
+
+  .l2-chevron {
+    color: rgba(255,255,255,0.5);
+    font-size: 12px;
+    transition: transform 0.2s;
+  }
+
+  .l2.open .l2-chevron { transform: rotate(90deg); }
+
+  .l2-body {
+    display: none;
+    padding: 0 12px 12px 12px;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .l2.open .l2-body { display: flex; }
+
+  .l3 {
+    background: var(--l3-bg);
+    border: 1px solid var(--l3-border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .l3-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 9px 12px;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .l3-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--l2-bg);
+    border-radius: 50%;
+    margin-top: 5px;
+    flex-shrink: 0;
+  }
+
+  .l3-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--l3-text);
+    flex: 1;
+    line-height: 1.5;
+  }
+
+  .l3-chevron {
+    color: var(--text-muted);
+    font-size: 11px;
+    margin-top: 2px;
+    transition: transform 0.2s;
+    flex-shrink: 0;
+  }
+
+  .l3.open .l3-chevron { transform: rotate(90deg); }
+
+  .l3-body {
+    display: none;
+    padding: 0 10px 10px 26px;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .l3.open .l3-body { display: flex; }
+
+  .l4 {
+    background: var(--l4-bg);
+    border: 1px solid var(--l4-border);
+    border-radius: 5px;
+    padding: 8px 12px;
+  }
+
+  .l4-content {
+    font-size: 12px;
+    color: var(--l4-text);
+    line-height: 1.6;
+  }
+
+  .l4-label {
+    font-weight: 600;
+    color: var(--l3-text);
+  }
+
+  .l4-desc {
+    color: var(--text-muted);
+    font-size: 12px;
+    line-height: 1.6;
+  }
+
+  .l3-leaf .l3-header { cursor: default; }
+  .l3-leaf .l3-chevron { display: none; }
+  .l3-leaf { cursor: default; }
+
+  .l2-leaf .l2-header { cursor: default; }
+  .l2-leaf .l2-chevron { display: none; }
+
+  .flow {
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+
+  .flow-arrow {
+    color: var(--l1-accent);
+    margin: 0 4px;
+    font-weight: 600;
+  }
+
+  .tag-pending {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 8px;
+    background: rgba(255,200,50,0.15);
+    color: #B8860B;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+</style>
+
+<header>
+  <h1>エンジニア派遣事業部　業務マップ</h1>
+  <p>株式会社グッドキャスト　営業業務の構造整理</p>
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:#1A2B4A"></div>大項目</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#2E5FA3"></div>中項目</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#4A90E2"></div>小項目</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#C8D8EC"></div>詳細</div>
+  </div>
+</header>
+
+<div class="tree">
+
+  <!-- 1. テレアポ -->
+  <div class="l1 open" id="l1-1">
+    <div class="l1-header" onclick="toggle('l1-1')">
+      <span class="l1-num">01</span>
+      <span class="l1-label">テレアポ</span>
+      <span class="chevron">▶</span>
+    </div>
+    <div class="l1-body">
+
+      <div class="l2 open" id="l2-1-1">
+        <div class="l2-header" onclick="toggle('l2-1-1')">
+          <div class="l2-bar"></div>
+          <span class="l2-label">架電エリア決め</span>
+          <span class="l2-chevron">▶</span>
+        </div>
+        <div class="l2-body">
+          <div class="l3 l3-leaf">
+            <div class="l3-header">
+              <div class="l3-dot"></div>
+              <span class="l3-label">S・A・B・Cランクの管理・優先順位付け</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="l2 open" id="l2-1-2">
+        <div class="l2-header" onclick="toggle('l2-1-2')">
+          <div class="l2-bar"></div>
+          <span class="l2-label">架電・アプローチ</span>
+          <span class="l2-chevron">▶</span>
+        </div>
+        <div class="l2-body">
+          <div class="l3 l3-leaf">
+            <div class="l3-header">
+              <div class="l3-dot"></div>
+              <span class="l3-label">当日分の架電（アクションネクスト日付が当日のもの）</span>
+            </div>
+          </div>
+          <div class="l3" id="l3-1-2-2">
+            <div class="l3-header" onclick="toggle('l3-1-2-2')">
+              <div class="l3-dot"></div>
+              <span class="l3-label">架電結果の記録・チェック</span>
+              <span class="l3-chevron">▶</span>
+            </div>
+            <div class="l3-body">
+              <div class="l4"><span class="l4-label">受付ブロック：</span><span class="l4-desc">受付に断られたとき（派遣NG・外国籍NG・若手NGなど断り内容を記録）</span></div>
+              <div class="l4"><span class="l4-label">担当者不在：</span><span class="l4-desc">着任・留守電・不通など（担当者名・戻り時間・つながりやすい時間・曜日を記録）</span></div>
+              <div class="l4"><span class="l4-label">担当者着電：</span><span class="l4-desc">担当者と会話した時（話した内容・担当者の特徴を記録）</span></div>
+              <div class="l4"><span class="l4-label">新規アポ取得：</span><span class="l4-desc">初めて商談するアポを取得した時（日時・メアド・担当者名・ヒアリング内容を記録）</span></div>
+              <div class="l4"><span class="l4-label">再アポ取得：</span><span class="l4-desc">再度商談のアポを取得した時（日時・メアド・担当者名・ヒアリング内容を記録）</span></div>
+              <div class="l4"><span class="l4-label">巡回アポ取得：</span><span class="l4-desc">稼働企業の巡回アポを取得した時（会話内容・特筆事項を記録）</span></div>
+              <div class="l4"><span class="l4-label">その他：</span><span class="l4-desc">稼働企業・Sランクへの定期連絡・巡回後（会話内容・特筆事項を記録）</span></div>
+              <div class="l4"><span class="l4-desc">話した内容を記載・「ネクスト内容」欄に次のアクションを記載</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="l2 open" id="l2-1-3">
+        <div class="l2-header" onclick="toggle('l2-1-3')">
+          <div class="l2-bar"></div>
+          <span class="l2-label">アポ管理・報告</span>
+          <span class="l2-chevron">▶</span>
+        </div>
+        <div class="l2-body">
+          <div class="l3" id="l3-1-3-1">
+            <div class="l3-header" onclick="toggle('l3-1-3-1')">
+              <div class="l3-dot"></div>
+              <span class="l3-label">楽テルの更新</span>
+              <span class="l3-chevron">▶</span>
+            </div>
+            <div class="l3-body">
+              <div class="l4"><span class="l4-desc">派遣ステータス「アポ取得済み」にチェックを入れる</span></div>
+              <div class="l4"><span class="l4-desc">アクション内容に担当者との会話内容を記載・ネクスト日付をアポ日に設定</span></div>
+              <div class="l4"><span class="l4-desc">C・BランクからアポはAランクに昇格させる</span></div>
+              <div class="l4"><span class="l4-desc">営業担当欄に自分の名前を入れる</span></div>
+            </div>
+          </div>
+          <div class="l3" id="l3-1-3-2">
+            <div class="l3-header" onclick="toggle('l3-1-3-2')">
+              <div class="l3-dot"></div>
+              <span class="l3-label">Googleカレンダーへの登録</span>
+              <span class="l3-chevron">▶</span>
+            </div>
+            <div class="l3-body">
+              <div class="l4">
+                <div class="l4-label" style="margin-bottom:4px">現地アポ</div>
+                <div class="flow">
+                  楽テルの企業情報をスクショ
+                  <span class="flow-arrow">→</span>
+                  Claudeの「カレンダーメール作成」プロジェクトでフォーマット作成
+                  <span class="flow-arrow">→</span>
+                  Googleカレンダーに貼り付け
+                </div>
+              </div>
+              <div class="l4">
+                <div class="l4-label" style="margin-bottom:4px">オンアポ</div>
+                <div class="flow">
+                  ZOOMリンク作成
+                  <span class="flow-arrow">→</span>
+                  楽テルの企業情報とZOOMリンクをスクショ
+                  <span class="flow-arrow">→</span>
+                  Claudeの「カレンダー作成」プロジェクトでフォーマット作成
+                  <span class="flow-arrow">→</span>
+                  Googleカレンダーに貼り付け
+                  <span class="flow-arrow">→</span>
+                  メール送信
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 2. 商談 -->
+  <div class="l1 open" id="l1-2">
+    <div class="l1-header" onclick="toggle('l1-2')">
+      <span class="l1-num">02</span>
+      <span class="l1-label">商談</span>
+      <span class="chevron">▶</span>
+    </div>
+    <div class="l1-body">
+
+      <div class="l2 open" id="l2-2-1">
+        <div class="l2-header" onclick="toggle('l2-2-1')">
+          <div class="l2-bar"></div>
+          <span class="l2-label">事前準備</span>
+          <span class="l2-chevron">▶</span>
+        </div>
+        <div class="l2-body">
+          <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">どんな会社か・事業内容・規模感の確認</span></div></div>
+          <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">企業の近隣大手会社の確認</span></div></div>
+          <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">過去ハローワークの求人情報の確認</span></div></div>
+          <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">アポ企業の都道府県の最低賃金・人口水準の確認</span></div></div>
+        </div>
+      </div>
+
+      <div class="l2 open" id="l2-2-2">
+        <div class="l2-header" onclick="toggle('l2-2-2')">
+          <div class="l2-bar"></div>
+          <span class="l2-label">ヒアリング</span>
+          <span class="l2-chevron">▶</span>
+        </div>
+        <div class="l2-body">
+          <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">採用状況の確認（募集背景・採用媒体・採用実績など）</span></div></div>
+          <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">労働条件の確認（給与相場・勤務時間・待遇など）</span></div></div>
+          <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">職場環境の確認（社内年齢層・定着率・外国籍の有無など）</span></div></div>
+          <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">派遣スタッフの有無の確認</span></div></div>
+          <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">ニーズ・課題のヒアリング（どんな人財が欲しいか・今困っていることなど）</span></div></div>
+        </div>
+      </div>
+
+      <div class="l2 open" id="l2-2-3">
+        <div class="l2-header" onclick="toggle('l2-2-3')">
+          <div class="l2-bar"></div>
+          <span class="l2-label">提案・クロージング</span>
+          <span class="l2-chevron">▶</span>
+        </div>
+        <div class="l2-body">
+          <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">営業資料を用いて企業の課題・現状について訴求</span></div></div>
+          <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">人財のピックアップ</span></div></div>
+          <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">社内展開用の提案資料作成</span></div></div>
+        </div>
+      </div>
+
+      <div class="l2 open" id="l2-2-4">
+        <div class="l2-header" onclick="toggle('l2-2-4')">
+          <div class="l2-bar"></div>
+          <span class="l2-label">商談後フォロー</span>
+          <span class="l2-chevron">▶</span>
+        </div>
+        <div class="l2-body">
+          <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">商談内容の文字起こし</span></div></div>
+          <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">Claudeの「アポ報告お礼メール」プロジェクトでアポ報告・お礼メール文章を出力</span></div></div>
+          <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">Slackの#アポ報告に出力済み内容を添付・上司へ今後のアクションを報告し精査</span></div></div>
+          <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">Gmailでお礼メールを送付</span></div></div>
+          <div class="l3" id="l3-2-4-5">
+            <div class="l3-header" onclick="toggle('l3-2-4-5')">
+              <div class="l3-dot"></div>
+              <span class="l3-label">楽テルの更新</span>
+              <span class="l3-chevron">▶</span>
+            </div>
+            <div class="l3-body">
+              <div class="l4"><span class="l4-desc">出力したアポ報告をオーダーフォーマットへ添付</span></div>
+              <div class="l4"><span class="l4-desc">担当者特徴を記載</span></div>
+              <div class="l4"><span class="l4-desc">派遣ステータスを「アポ取得済み」から「商談済み未オーダー」に変更</span></div>
+              <div class="l4"><span class="l4-desc">アクションを「商談」にし、今後のアクション内容とネクスト日付を設定</span></div>
+            </div>
+          </div>
+          <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">Sランク設定・定期架電（「タイミング次第」などの企業はSランクに設定し2〜3週間ごとに後追い架電）</span></div></div>
+          <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">人財候補の提案（ピックアップ済みの場合、候補者が固まり次第提案）</span></div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 3. 書類関係 -->
+  <div class="l1 open" id="l1-3">
+    <div class="l1-header" onclick="toggle('l1-3')">
+      <span class="l1-num">03</span>
+      <span class="l1-label">書類関係</span>
+      <span class="chevron">▶</span>
+    </div>
+    <div class="l1-body">
+
+      <!-- 契約書類 -->
+      <div class="l2 open" id="l2-3-1">
+        <div class="l2-header" onclick="toggle('l2-3-1')">
+          <div class="l2-bar"></div>
+          <span class="l2-label">契約書類</span>
+          <span class="l2-chevron">▶</span>
+        </div>
+        <div class="l2-body">
+          <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">労働者派遣基本契約書（新規取引企業と契約締結時）</span></div></div>
+          <div class="l3" id="l3-3-1-2">
+            <div class="l3-header" onclick="toggle('l3-3-1-2')">
+              <div class="l3-dot"></div>
+              <span class="l3-label">個別契約書（企業・人財ごとに締結）</span>
+              <span class="l3-chevron">▶</span>
+            </div>
+            <div class="l3-body">
+              <div class="l4"><span class="l4-desc">内容確認書の返信・内容確認後、Slackの#雇用-請求-給与より「ビザ申請前　仮契約書依頼」ワークフローで送信</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ビザ申請書類の回収 -->
+      <div class="l2 open" id="l2-3-2">
+        <div class="l2-header" onclick="toggle('l2-3-2')">
+          <div class="l2-bar"></div>
+          <span class="l2-label">ビザ申請書類の回収</span>
+          <span class="l2-chevron">▶</span>
+        </div>
+        <div class="l2-body">
+          <div class="l3" id="l3-3-2-1">
+            <div class="l3-header" onclick="toggle('l3-3-2-1')">
+              <div class="l3-dot"></div>
+              <span class="l3-label">【新規人財】【新】ビザ申請案内セットより書類を送付</span>
+              <span class="l3-chevron">▶</span>
+            </div>
+            <div class="l3-body">
+              <div class="l4"><span class="l4-desc">内容確認書（回収期日：営業日3日以内）</span></div>
+              <div class="l4"><span class="l4-desc">ビザ申請フォーマット</span></div>
+              <div class="l4"><span class="l4-desc">ビザ申請用チェックリスト</span></div>
+              <div class="l4"><span class="l4-desc">Naviドキュメントマニュアル</span></div>
+              <div class="l4"><span class="l4-label">格納場所：</span><span class="l4-desc">営業部 ＞ 2.エンジニア派遣事業部 ＞ 2.ビザ関係 ＞ 1.契約関係・ビザ申請格納 ＞ 【新】ビザ申請案内セット</span></div>
+            </div>
+          </div>
+          <div class="l3" id="l3-3-2-2">
+            <div class="l3-header" onclick="toggle('l3-3-2-2')">
+              <div class="l3-dot"></div>
+              <span class="l3-label">【在日人財】内容確認書を送付後、ビザ更新時に申請用シートを送付</span>
+              <span class="l3-chevron">▶</span>
+            </div>
+            <div class="l3-body">
+              <div class="l4"><span class="l4-desc">内容確認書の回収期日：営業日3日以内</span></div>
+              <div class="l4"><span class="l4-desc">ビザ更新時の書類回収期日：2週間以内</span></div>
+              <div class="l4"><span class="l4-desc">申請用シート（所属機関・派遣先）→ 企業へ送付</span></div>
+              <div class="l4"><span class="l4-desc">申請用シート（申請人）→ 本人へ送付</span></div>
+              <div class="l4"><span class="l4-label">格納場所：</span><span class="l4-desc">2.エンジニア派遣事業部 ＞ 2.ビザ関係 ＞ 1.契約関係・ビザ申請格納 ＞ ☆ビザ更新書類格納フォルダ ＞ 1.申請シート ＞ 申請シート</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 入社・就業書類 -->
+      <div class="l2 open" id="l2-3-3">
+        <div class="l2-header" onclick="toggle('l2-3-3')">
+          <div class="l2-bar"></div>
+          <span class="l2-label">入社・就業書類</span>
+          <span class="l2-chevron">▶</span>
+        </div>
+        <div class="l2-body">
+          <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">雇用契約書</span></div></div>
+          <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">入社誓約書</span></div></div>
+          <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">内容確認書</span></div></div>
+          <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">銀行口座情報</span></div></div>
+          <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">マイナンバー関連書類</span></div></div>
+          <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">契約機関に関する届出の確認（本人が入管へ14日以内にオンライン申請済みか確認）</span></div></div>
+          <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">GCO（グッドキャストワン）の入社管理から入社日項目の入力</span></div></div>
+          <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">Slackの#派遣社員入退社及び引越の報告 グループへ報告（退社・引越の際も）</span></div></div>
+        </div>
+      </div>
+
+      <!-- 社内管理 -->
+      <div class="l2 open" id="l2-3-4">
+        <div class="l2-header" onclick="toggle('l2-3-4')">
+          <div class="l2-bar"></div>
+          <span class="l2-label">社内管理</span>
+          <span class="l2-chevron">▶</span>
+        </div>
+        <div class="l2-body">
+          <div class="l3" id="l3-3-4-1">
+            <div class="l3-header" onclick="toggle('l3-3-4-1')">
+              <div class="l3-dot"></div>
+              <span class="l3-label">GCO（グッドキャストワン）【スタッフ】タブから【入社管理】を選択</span>
+              <span class="l3-chevron">▶</span>
+            </div>
+            <div class="l3-body">
+              <div class="l4">
+                <div class="l4-label" style="margin-bottom:4px">【在日人財】</div>
+                <div class="l4-desc">取引区分 ／ スタッフ情報（派遣単価・メールアドレス）／ 物件・ライフライン手配状況（Slackの#不動産グエンさんへピックアップ依頼）／ 内定日 ／ ネクストアクション日付</div>
+              </div>
+              <div class="l4">
+                <div class="l4-label" style="margin-bottom:4px">【新規人財】（上記＋以下）</div>
+                <div class="l4-desc">【ステータス】にビザ申請状況を選択（書類回収中・申請待ち・申請中 など）</div>
+                <div class="l4-desc" style="margin-top:4px">【入国前書類】で書類回収状況をチェック</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 4. 企業対応 -->
+  <div class="l1 open" id="l1-4">
+    <div class="l1-header" onclick="toggle('l1-4')">
+      <span class="l1-num">04</span>
+      <span class="l1-label">企業対応</span>
+      <span class="chevron">▶</span>
+    </div>
+    <div class="l1-body">
+
+      <!-- 受け入れ準備サポート -->
+      <div class="l2 open" id="l2-4-1">
+        <div class="l2-header" onclick="toggle('l2-4-1')">
+          <div class="l2-bar"></div>
+          <span class="l2-label">受け入れ準備サポート</span>
+          <span class="l2-chevron">▶</span>
+        </div>
+        <div class="l2-body">
+          <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">【新規人財】ビザ申請日の2週間後に#不動産グエンさんへ物件ピックアップ依頼 → 入国許可後に契約（入居日は入国日に合わせる）</span></div></div>
+          <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">【在日人財】内定確度が高い段階で#不動産グエンさんへ物件ピックアップ依頼 → 入社希望日に合わせて最短で手配（入居日と入社日を合わせる）</span></div></div>
+          <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">就業場所・備品の確認</span></div></div>
+        </div>
+      </div>
+
+      <!-- 就業中のフォロー -->
+      <div class="l2 open" id="l2-4-2">
+        <div class="l2-header" onclick="toggle('l2-4-2')">
+          <div class="l2-bar"></div>
+          <span class="l2-label">就業中のフォロー</span>
+          <span class="l2-chevron">▶</span>
+        </div>
+        <div class="l2-body">
+          <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">定期巡回・訪問（現場確認）</span></div></div>
+          <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">就業状況の確認（業務内容・勤怠など）</span></div></div>
+          <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">評価・報告（スタッフの働きぶりを企業にヒアリング）</span></div></div>
+          <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">トラブル・クレーム対応</span></div></div>
+        </div>
+      </div>
+
+      <!-- 追加提案 -->
+      <div class="l2 open" id="l2-4-3">
+        <div class="l2-header" onclick="toggle('l2-4-3')">
+          <div class="l2-bar"></div>
+          <span class="l2-label">追加提案</span>
+          <span class="l2-chevron">▶</span>
+        </div>
+        <div class="l2-body">
+          <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">増員ニーズのヒアリング</span></div></div>
+          <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">人財ピックアップ・提案</span></div></div>
+        </div>
+      </div>
+
+      <!-- 正社員登用対応 -->
+      <div class="l2 open" id="l2-4-4">
+        <div class="l2-header" onclick="toggle('l2-4-4')">
+          <div class="l2-bar"></div>
+          <span class="l2-label">正社員登用対応　<span style="font-size:11px;opacity:0.7">※詳細確認中</span></span>
+          <span class="l2-chevron">▶</span>
+        </div>
+        <div class="l2-body">
+          <div class="l3" id="l3-4-4-1">
+            <div class="l3-header" onclick="toggle('l3-4-4-1')">
+              <div class="l3-dot"></div>
+              <span class="l3-label">【派遣期間3年以内の正社員切り替え】紹介料の擦り合わせ</span>
+              <span class="l3-chevron">▶</span>
+            </div>
+            <div class="l3-body">
+              <div class="l4"><span class="l4-desc">派遣期間3年以内での正社員切り替えの場合、企業との紹介料を確認・調整</span></div>
+            </div>
+          </div>
+          <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">物件・保険などの名義変更手続き</span></div></div>
+          <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">契約書類の手続き</span></div></div>
+          <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">企業へビザ手続きのご案内（現状資料なし）</span></div></div>
+          <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">人財への更新案内・1人で手続きできるかの最終チェック</span></div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 5. 人財対応 -->
+  <div class="l1 open" id="l1-5">
+    <div class="l1-header" onclick="toggle('l1-5')">
+      <span class="l1-num">05</span>
+      <span class="l1-label">人財対応</span>
+      <span class="chevron">▶</span>
+    </div>
+    <div class="l1-body">
+
+      <!-- 入社前準備 -->
+      <div class="l2 open" id="l2-5-1">
+        <div class="l2-header" onclick="toggle('l2-5-1')">
+          <div class="l2-bar"></div>
+          <span class="l2-label">入社前準備</span>
+          <span class="l2-chevron">▶</span>
+        </div>
+        <div class="l2-body">
+          <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">備品・生活用品の買い出し手配</span></div></div>
+          <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">家具家電の手配（必要な場合）</span></div></div>
+          <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">引越し・転入手続きのサポート</span></div></div>
+          <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">在留カード・マイナンバーカードの住所変更確認</span></div></div>
+          <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">【在日人財】契約機関に関する届出の確認（本人が入管へ14日以内にオンライン申請済みか確認）</span></div></div>
+        </div>
+      </div>
+
+      <!-- 入社時オリエンテーション -->
+      <div class="l2 open" id="l2-5-2">
+        <div class="l2-header" onclick="toggle('l2-5-2')">
+          <div class="l2-bar"></div>
+          <span class="l2-label">入社時オリエンテーション</span>
+          <span class="l2-chevron">▶</span>
+        </div>
+        <div class="l2-body">
+          <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">就業場所への同行・挨拶</span></div></div>
+          <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">社内ルール・マナーの説明</span></div></div>
+        </div>
+      </div>
+
+      <!-- 就業中フォロー -->
+      <div class="l2 open" id="l2-5-3">
+        <div class="l2-header" onclick="toggle('l2-5-3')">
+          <div class="l2-bar"></div>
+          <span class="l2-label">就業中フォロー</span>
+          <span class="l2-chevron">▶</span>
+        </div>
+        <div class="l2-body">
+          <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">給与・待遇に関する相談対応</span></div></div>
+          <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">離職・退職相談への対応</span></div></div>
+          <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">トラブル対応（人間関係・職場環境など）</span></div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<script>
+  function toggle(id) {
+    const el = document.getElementById(id);
+    if (el) el.classList.toggle('open');
+  }
+</script>
+
+</body></html>
