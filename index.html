@@ -1,6 +1,6 @@
 <!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found]){display:none!important}</style><style>
 .manual-legend{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:18px auto 8px}.manual-badge{display:inline-block;border-radius:6px;padding:4px 9px;font-size:12px;font-weight:700;line-height:1.5;white-space:normal}.manual-ready{background:#dcfce7;color:#166534}.manual-partial{background:#fef3c7;color:#854d0e}.manual-missing{background:#fee2e2;color:#991b1b}.manual-card{margin:10px 0 14px;padding:12px 14px;border:1px solid;border-left-width:5px;border-radius:8px;line-height:1.8}.manual-card.manual-ready{border-color:#86efac}.manual-card.manual-partial{border-color:#fcd34d}.manual-card.manual-missing{border-color:#fca5a5}.manual-source{font-weight:700}.manual-note{font-size:12px;margin:2px 0 0}.l2-header>.manual-badge{margin-left:auto;flex-shrink:0;max-width:42%}.manual-help{font-size:12px;text-align:center;color:var(--text-muted);line-height:1.7;margin:8px 0 0}@media(max-width:600px){.l2-header{flex-wrap:wrap}.l2-header>.manual-badge{font-size:11px;max-width:100%}.manual-card{font-size:12px}}
-</style></head><body>
+</style><style>.manual-files{margin-top:8px}.manual-file{margin:9px 0;padding-top:8px;border-top:1px solid currentColor}.manual-filename{font-size:12px;font-weight:600;overflow-wrap:anywhere}.manual-location{font-size:11px;line-height:1.6;margin:3px 0;opacity:.85;overflow-wrap:anywhere}.manual-link-pending{display:inline-block;font-size:11px;margin:4px 0;border:1px solid currentColor;padding:3px 8px;border-radius:5px}.manual-gap{margin-top:10px;padding-top:9px;border-top:1px solid currentColor}.manual-gap p{margin:5px 0;font-size:12px;line-height:1.8}.manual-gap strong{display:block}.manual-open{display:inline-block;background:#fff;color:#1a2b4a;border:1px solid currentColor;border-radius:5px;padding:5px 10px;margin:5px 0;font-size:12px;font-weight:700}</style><style>.manual-summary{display:block;width:100%;text-align:left;font:inherit;font-size:12px;padding:8px 10px;margin:8px 0 12px;border:1px solid currentColor;border-radius:6px;cursor:pointer;line-height:1.6}.manual-summary:hover{filter:brightness(.97)}.manual-summary:focus-visible{outline:3px solid #4a90e2;outline-offset:2px}.manual-detail-hint{font-size:10px;margin-left:8px;text-decoration:underline;white-space:nowrap}.manual-dialog{border:0;border-radius:12px;padding:18px;max-width:640px;width:calc(100% - 52px);max-height:85vh;background:var(--surface);color:var(--text);box-shadow:0 18px 65px #0005}.manual-dialog::backdrop{background:#0f1923aa}.manual-dialog-top{display:flex;align-items:flex-start;gap:15px;justify-content:space-between}.manual-dialog h2{font-size:16px;margin:0;line-height:1.6}.manual-dialog-top button,.manual-dialog-footer button{cursor:pointer;padding:6px 12px;border:1px solid var(--border);border-radius:5px;background:var(--surface);color:var(--text)}.manual-dialog-top button{font-size:22px}.manual-dialog .manual-card{margin:12px 0}.manual-dialog-footer{text-align:right}.manual-dialog .manual-source{display:none}</style></head><body>
 <title>エンジニア派遣事業部 業務マップ</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap">
 <style>
@@ -349,7 +349,7 @@
     <div class="legend-item"><div class="legend-dot" style="background:#4A90E2"></div>小項目</div>
     <div class="legend-item"><div class="legend-dot" style="background:#C8D8EC"></div>詳細</div>
   </div>
-<div class="manual-legend"><span class="manual-badge manual-ready">対応資料あり</span><span class="manual-badge manual-partial">補足が必要</span><span class="manual-badge manual-missing">マニュアル未整備（要確認）</span></div><p class="manual-help">中項目ごとの整備状況を表示しています。未整備は今回の調査に基づく仮判定です。<br>資料名・対応先を表示中です。マニュアルへのリンクは順次設定します。</p></header>
+<div class="manual-legend"><span class="manual-badge manual-ready">対応資料あり</span><span class="manual-badge manual-partial">補足が必要</span><span class="manual-badge manual-missing">マニュアル未整備（要確認）</span></div><p class="manual-help">中項目ごとの整備状況を表示しています。未整備は今回の調査に基づく仮判定です。<br>資料の格納先と不足内容を表示しています。OneDriveリンクは確認できたものから設定します。</p></header>
 
 <div class="tree">
 
@@ -369,7 +369,7 @@
           <span class="manual-badge manual-ready">対応資料あり</span>
           <span class="l2-chevron">▶</span>
         </div>
-        <div class="l2-body"><div class="manual-card manual-ready"><div class="manual-source">対応先：楽テルに記載</div></div>
+        <div class="l2-body"><button type="button" class="manual-summary manual-ready" aria-haspopup="dialog" onclick="openManual(1)">マニュアル：<strong>楽テルに記載</strong><span class="manual-detail-hint">詳細を見る</span></button>
           <div class="l3 l3-leaf">
             <div class="l3-header">
               <div class="l3-dot"></div>
@@ -386,7 +386,7 @@
           <span class="manual-badge manual-ready">対応資料あり</span>
           <span class="l2-chevron">▶</span>
         </div>
-        <div class="l2-body"><div class="manual-card manual-ready"><div class="manual-source">対応先：切り返し君の架電ナビ</div></div>
+        <div class="l2-body"><button type="button" class="manual-summary manual-ready" aria-haspopup="dialog" onclick="openManual(2)">マニュアル：<strong>切り返し君の架電ナビ</strong><span class="manual-detail-hint">詳細を見る</span></button>
           <div class="l3 l3-leaf">
             <div class="l3-header">
               <div class="l3-dot"></div>
@@ -420,7 +420,7 @@
           <span class="manual-badge manual-partial">補足が必要</span>
           <span class="l2-chevron">▶</span>
         </div>
-        <div class="l2-body"><div class="manual-card manual-partial"><div class="manual-source">対応先：楽テル使用方法マニュアル</div><p class="manual-note">カレンダー・Zoom登録の手順を補足</p></div>
+        <div class="l2-body"><button type="button" class="manual-summary manual-partial" aria-haspopup="dialog" onclick="openManual(3)">マニュアル：<strong>楽テル使用方法マニュアル</strong><span class="manual-detail-hint">詳細を見る</span></button>
           <div class="l3" id="l3-1-3-1">
             <div class="l3-header" onclick="toggle('l3-1-3-1')">
               <div class="l3-dot"></div>
@@ -489,7 +489,7 @@
           <span class="manual-badge manual-partial">補足が必要</span>
           <span class="l2-chevron">▶</span>
         </div>
-        <div class="l2-body"><div class="manual-card manual-partial"><div class="manual-source">対応先：商談ムーブ固定マニュアル・商談後フォローマニュアル</div><p class="manual-note">事前調査の具体的な手順を補足</p></div>
+        <div class="l2-body"><button type="button" class="manual-summary manual-partial" aria-haspopup="dialog" onclick="openManual(4)">マニュアル：<strong>商談ムーブ固定マニュアル・商談後フォローマニュアル</strong><span class="manual-detail-hint">詳細を見る</span></button>
           <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">どんな会社か・事業内容・規模感の確認</span></div></div>
           <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">企業の近隣大手会社の確認</span></div></div>
           <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">過去ハローワークの求人情報の確認</span></div></div>
@@ -504,7 +504,7 @@
           <span class="manual-badge manual-ready">対応資料あり</span>
           <span class="l2-chevron">▶</span>
         </div>
-        <div class="l2-body"><div class="manual-card manual-ready"><div class="manual-source">対応先：商談ムーブ固定マニュアル・ヒアリングシート・FAQ</div></div>
+        <div class="l2-body"><button type="button" class="manual-summary manual-ready" aria-haspopup="dialog" onclick="openManual(5)">マニュアル：<strong>商談ムーブ固定マニュアル・ヒアリングシート・FAQ</strong><span class="manual-detail-hint">詳細を見る</span></button>
           <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">採用状況の確認（募集背景・採用媒体・採用実績など）</span></div></div>
           <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">労働条件の確認（給与相場・勤務時間・待遇など）</span></div></div>
           <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">職場環境の確認（社内年齢層・定着率・外国籍の有無など）</span></div></div>
@@ -520,7 +520,7 @@
           <span class="manual-badge manual-partial">補足が必要</span>
           <span class="l2-chevron">▶</span>
         </div>
-        <div class="l2-body"><div class="manual-card manual-partial"><div class="manual-source">対応先：商談ムーブ固定マニュアル・FAQ</div><p class="manual-note">人財ピックアップ依頼の手順を補足</p></div>
+        <div class="l2-body"><button type="button" class="manual-summary manual-partial" aria-haspopup="dialog" onclick="openManual(6)">マニュアル：<strong>商談ムーブ固定マニュアル・FAQ</strong><span class="manual-detail-hint">詳細を見る</span></button>
           <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">営業資料を用いて企業の課題・現状について訴求</span></div></div>
           <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">人財のピックアップ</span></div></div>
           <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">社内展開用の提案資料作成</span></div></div>
@@ -534,7 +534,7 @@
           <span class="manual-badge manual-partial">補足が必要</span>
           <span class="l2-chevron">▶</span>
         </div>
-        <div class="l2-body"><div class="manual-card manual-partial"><div class="manual-source">対応先：商談後フォローマニュアル</div><p class="manual-note">報告・メール送付など現行の操作手順を補足</p></div>
+        <div class="l2-body"><button type="button" class="manual-summary manual-partial" aria-haspopup="dialog" onclick="openManual(7)">マニュアル：<strong>商談後フォローマニュアル</strong><span class="manual-detail-hint">詳細を見る</span></button>
           <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">商談内容の文字起こし</span></div></div>
           <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">Claudeの「アポ報告お礼メール」プロジェクトでアポ報告・お礼メール文章を出力</span></div></div>
           <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">Slackの#アポ報告に出力済み内容を添付・上司へ今後のアクションを報告し精査</span></div></div>
@@ -577,7 +577,7 @@
           <span class="manual-badge manual-partial">補足が必要</span>
           <span class="l2-chevron">▶</span>
         </div>
-        <div class="l2-body"><div class="manual-card manual-partial"><div class="manual-source">対応先：入社フロー・契約関係の既存資料</div><p class="manual-note">旧資料を現行の契約手順に更新</p></div>
+        <div class="l2-body"><button type="button" class="manual-summary manual-partial" aria-haspopup="dialog" onclick="openManual(8)">マニュアル：<strong>入社フロー・契約関係の既存資料</strong><span class="manual-detail-hint">詳細を見る</span></button>
           <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">労働者派遣基本契約書（新規取引企業と契約締結時）</span></div></div>
           <div class="l3" id="l3-3-1-2">
             <div class="l3-header" onclick="toggle('l3-3-1-2')">
@@ -600,7 +600,7 @@
           <span class="manual-badge manual-ready">対応資料あり</span>
           <span class="l2-chevron">▶</span>
         </div>
-        <div class="l2-body"><div class="manual-card manual-ready"><div class="manual-source">対応先：新・ビザ申請ご案内マニュアル</div></div>
+        <div class="l2-body"><button type="button" class="manual-summary manual-ready" aria-haspopup="dialog" onclick="openManual(9)">マニュアル：<strong>新・ビザ申請ご案内マニュアル</strong><span class="manual-detail-hint">詳細を見る</span></button>
           <div class="l3" id="l3-3-2-1">
             <div class="l3-header" onclick="toggle('l3-3-2-1')">
               <div class="l3-dot"></div>
@@ -640,7 +640,7 @@
           <span class="manual-badge manual-partial">補足が必要</span>
           <span class="l2-chevron">▶</span>
         </div>
-        <div class="l2-body"><div class="manual-card manual-partial"><div class="manual-source">対応先：新規・在日入社フロー完全版</div><p class="manual-note">社内登録・報告の手順を補足</p></div>
+        <div class="l2-body"><button type="button" class="manual-summary manual-partial" aria-haspopup="dialog" onclick="openManual(10)">マニュアル：<strong>新規・在日入社フロー完全版</strong><span class="manual-detail-hint">詳細を見る</span></button>
           <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">雇用契約書</span></div></div>
           <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">入社誓約書</span></div></div>
           <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">内容確認書</span></div></div>
@@ -660,7 +660,7 @@
           <span class="manual-badge manual-missing">マニュアル未整備（要確認）</span>
           <span class="l2-chevron">▶</span>
         </div>
-        <div class="l2-body"><div class="manual-card manual-missing"><div class="manual-source">対応先：GCO社内管理</div><p class="manual-note">操作マニュアルが今回の調査では未確認</p></div>
+        <div class="l2-body"><button type="button" class="manual-summary manual-missing" aria-haspopup="dialog" onclick="openManual(11)">マニュアル・整備状況：<strong>GCO社内管理</strong><span class="manual-detail-hint">詳細を見る</span></button>
           <div class="l3" id="l3-3-4-1">
             <div class="l3-header" onclick="toggle('l3-3-4-1')">
               <div class="l3-dot"></div>
@@ -702,7 +702,7 @@
           <span class="manual-badge manual-partial">補足が必要</span>
           <span class="l2-chevron">▶</span>
         </div>
-        <div class="l2-body"><div class="manual-card manual-partial"><div class="manual-source">対応先：新規・在日入社フロー完全版・引っ越し作業マニュアル</div><p class="manual-note">就業場所・備品の確認手順を補足</p></div>
+        <div class="l2-body"><button type="button" class="manual-summary manual-partial" aria-haspopup="dialog" onclick="openManual(12)">マニュアル：<strong>新規・在日入社フロー完全版・引っ越し作業マニュアル</strong><span class="manual-detail-hint">詳細を見る</span></button>
           <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">【新規人財】ビザ申請日の2週間後に#不動産グエンさんへ物件ピックアップ依頼 → 入国許可後に契約（入居日は入国日に合わせる）</span></div></div>
           <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">【在日人財】内定確度が高い段階で#不動産グエンさんへ物件ピックアップ依頼 → 入社希望日に合わせて最短で手配（入居日と入社日を合わせる）</span></div></div>
           <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">就業場所・備品の確認</span></div></div>
@@ -717,7 +717,7 @@
           <span class="manual-badge manual-partial">補足が必要</span>
           <span class="l2-chevron">▶</span>
         </div>
-        <div class="l2-body"><div class="manual-card manual-partial"><div class="manual-source">対応先：顧客関係値構築ガイド・商談後フォローマニュアル</div><p class="manual-note">フォロー頻度・トラブル報告手順を統一</p></div>
+        <div class="l2-body"><button type="button" class="manual-summary manual-partial" aria-haspopup="dialog" onclick="openManual(13)">マニュアル：<strong>顧客関係値構築ガイド・商談後フォローマニュアル</strong><span class="manual-detail-hint">詳細を見る</span></button>
           <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">定期巡回・訪問（現場確認）</span></div></div>
           <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">就業状況の確認（業務内容・勤怠など）</span></div></div>
           <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">評価・報告（スタッフの働きぶりを企業にヒアリング）</span></div></div>
@@ -733,7 +733,7 @@
           <span class="manual-badge manual-ready">対応資料あり</span>
           <span class="l2-chevron">▶</span>
         </div>
-        <div class="l2-body"><div class="manual-card manual-ready"><div class="manual-source">対応先：顧客関係値構築ガイド・商談後フォローマニュアル</div></div>
+        <div class="l2-body"><button type="button" class="manual-summary manual-ready" aria-haspopup="dialog" onclick="openManual(14)">マニュアル：<strong>顧客関係値構築ガイド・商談後フォローマニュアル</strong><span class="manual-detail-hint">詳細を見る</span></button>
           <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">増員ニーズのヒアリング</span></div></div>
           <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">人財ピックアップ・提案</span></div></div>
         </div>
@@ -747,7 +747,7 @@
           <span class="manual-badge manual-missing">マニュアル未整備（要確認）</span>
           <span class="l2-chevron">▶</span>
         </div>
-        <div class="l2-body"><div class="manual-card manual-missing"><div class="manual-source">対応先：正社員登用の覚書・見積書あり</div><p class="manual-note">書式はあるが、一連の手順マニュアルが未確認</p></div>
+        <div class="l2-body"><button type="button" class="manual-summary manual-missing" aria-haspopup="dialog" onclick="openManual(15)">マニュアル・整備状況：<strong>正社員登用の覚書・見積書あり</strong><span class="manual-detail-hint">詳細を見る</span></button>
           <div class="l3" id="l3-4-4-1">
             <div class="l3-header" onclick="toggle('l3-4-4-1')">
               <div class="l3-dot"></div>
@@ -785,7 +785,7 @@
           <span class="manual-badge manual-partial">補足が必要</span>
           <span class="l2-chevron">▶</span>
         </div>
-        <div class="l2-body"><div class="manual-card manual-partial"><div class="manual-source">対応先：新規・在日入社フロー完全版・引っ越し作業マニュアル</div><p class="manual-note">家具家電・購入品など生活準備の手順を補足</p></div>
+        <div class="l2-body"><button type="button" class="manual-summary manual-partial" aria-haspopup="dialog" onclick="openManual(16)">マニュアル：<strong>新規・在日入社フロー完全版・引っ越し作業マニュアル</strong><span class="manual-detail-hint">詳細を見る</span></button>
           <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">備品・生活用品の買い出し手配</span></div></div>
           <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">家具家電の手配（必要な場合）</span></div></div>
           <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">引越し・転入手続きのサポート</span></div></div>
@@ -802,7 +802,7 @@
           <span class="manual-badge manual-partial">補足が必要</span>
           <span class="l2-chevron">▶</span>
         </div>
-        <div class="l2-body"><div class="manual-card manual-partial"><div class="manual-source">対応先：入社フロー・スタッフ対応の既存資料</div><p class="manual-note">現行の入社当日の説明内容を整理</p></div>
+        <div class="l2-body"><button type="button" class="manual-summary manual-partial" aria-haspopup="dialog" onclick="openManual(17)">マニュアル：<strong>入社フロー・スタッフ対応の既存資料</strong><span class="manual-detail-hint">詳細を見る</span></button>
           <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">就業場所への同行・挨拶</span></div></div>
           <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">社内ルール・マナーの説明</span></div></div>
         </div>
@@ -816,7 +816,7 @@
           <span class="manual-badge manual-partial">補足が必要</span>
           <span class="l2-chevron">▶</span>
         </div>
-        <div class="l2-body"><div class="manual-card manual-partial"><div class="manual-source">対応先：外国籍派遣スタッフ対応マニュアル</div><p class="manual-note">退職決定後の手続きを補足</p></div>
+        <div class="l2-body"><button type="button" class="manual-summary manual-partial" aria-haspopup="dialog" onclick="openManual(18)">マニュアル：<strong>外国籍派遣スタッフ対応マニュアル</strong><span class="manual-detail-hint">詳細を見る</span></button>
           <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">給与・待遇に関する相談対応</span></div></div>
           <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">離職・退職相談への対応</span></div></div>
           <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">トラブル対応（人間関係・職場環境など）</span></div></div>
@@ -835,4 +835,26 @@
   }
 </script>
 
-</body></html>
+<dialog class="manual-dialog" id="manual-dialog-1" aria-labelledby="manual-title-1"><div class="manual-dialog-top"><h2 id="manual-title-1">楽テルに記載</h2><button type="button" onclick="closeManual(1)" aria-label="閉じる">×</button></div><div class="manual-card manual-ready"><div class="manual-source">対応先：楽テルに記載</div></div><div class="manual-dialog-footer"><button type="button" onclick="closeManual(1)">閉じる</button></div></dialog>
+<dialog class="manual-dialog" id="manual-dialog-2" aria-labelledby="manual-title-2"><div class="manual-dialog-top"><h2 id="manual-title-2">切り返し君の架電ナビ</h2><button type="button" onclick="closeManual(2)" aria-label="閉じる">×</button></div><div class="manual-card manual-ready"><div class="manual-source">対応先：切り返し君の架電ナビ</div></div><div class="manual-dialog-footer"><button type="button" onclick="closeManual(2)">閉じる</button></div></dialog>
+<dialog class="manual-dialog" id="manual-dialog-3" aria-labelledby="manual-title-3"><div class="manual-dialog-top"><h2 id="manual-title-3">楽テル使用方法マニュアル</h2><button type="button" onclick="closeManual(3)" aria-label="閉じる">×</button></div><div class="manual-card manual-partial"><div class="manual-source">対応先：楽テル使用方法マニュアル</div><div class="manual-files"><div class="manual-file"><div class="manual-filename">12.楽テル使用方法マニュアル.docx</div><small class="manual-link-pending">OneDriveリンク確認中</small><p class="manual-location">格納先：営業部 ＞ 1.全事業部　営業管理関係 ＞ 5.教育資料・マニュアル ＞ エンジニア　新人導入教育　初日～5日目 ＞ ③.2日目</p></div></div><div class="manual-gap"><p><strong>不足している内容</strong>カレンダーへの記載形式、Zoomの作成・参加者への案内、楽テルとの照合手順。</p><p><strong>追加するとよいもの</strong>アポ登録チェックリスト：日時・参加者・URL・重複確認・報告先と登録例。</p></div></div><div class="manual-dialog-footer"><button type="button" onclick="closeManual(3)">閉じる</button></div></dialog>
+<dialog class="manual-dialog" id="manual-dialog-4" aria-labelledby="manual-title-4"><div class="manual-dialog-top"><h2 id="manual-title-4">商談ムーブ固定マニュアル・商談後フォローマニュアル</h2><button type="button" onclick="closeManual(4)" aria-label="閉じる">×</button></div><div class="manual-card manual-partial"><div class="manual-source">対応先：商談ムーブ固定マニュアル・商談後フォローマニュアル</div><div class="manual-files"><div class="manual-file"><div class="manual-filename">3.商談ムーブ固定マニュアル（改訂版v2）.docx</div><small class="manual-link-pending">OneDriveリンク確認中</small><p class="manual-location">格納先：営業部 ＞ 2.エンジニア派遣事業部 ＞ 3.エンジニア管理職用 ＞ 業務改善 ＞ マニュアル・ツール</p></div><div class="manual-file"><div class="manual-filename">2-B.商談後フォローマニュアル.docx</div><small class="manual-link-pending">OneDriveリンク確認中</small><p class="manual-location">格納先：営業部 ＞ 2.エンジニア派遣事業部 ＞ 3.エンジニア管理職用 ＞ 業務改善 ＞ マニュアル・ツール</p></div></div><div class="manual-gap"><p><strong>不足している内容</strong>近隣競合、人口、最低賃金などの具体的な調べ方・記録方法。</p><p><strong>追加するとよいもの</strong>商談前リサーチシート：情報源・検索例・確認日・比較項目・仮説メモ。</p></div></div><div class="manual-dialog-footer"><button type="button" onclick="closeManual(4)">閉じる</button></div></dialog>
+<dialog class="manual-dialog" id="manual-dialog-5" aria-labelledby="manual-title-5"><div class="manual-dialog-top"><h2 id="manual-title-5">商談ムーブ固定マニュアル・ヒアリングシート・FAQ</h2><button type="button" onclick="closeManual(5)" aria-label="閉じる">×</button></div><div class="manual-card manual-ready"><div class="manual-source">対応先：商談ムーブ固定マニュアル・ヒアリングシート・FAQ</div><div class="manual-files"><div class="manual-file"><div class="manual-filename">3.商談ムーブ固定マニュアル（改訂版v2）.docx</div><small class="manual-link-pending">OneDriveリンク確認中</small><p class="manual-location">格納先：営業部 ＞ 2.エンジニア派遣事業部 ＞ 3.エンジニア管理職用 ＞ 業務改善 ＞ マニュアル・ツール</p></div><div class="manual-file"><div class="manual-filename">商談ヒアリングシート.docx</div><small class="manual-link-pending">OneDriveリンク確認中</small><p class="manual-location">格納先：営業部 ＞ 2.エンジニア派遣事業部 ＞ 3.エンジニア管理職用 ＞ 業務改善 ＞ マニュアル・ツール</p></div><div class="manual-file"><div class="manual-filename">4.商談FAQ・反論集.docx</div><small class="manual-link-pending">OneDriveリンク確認中</small><p class="manual-location">格納先：営業部 ＞ 2.エンジニア派遣事業部 ＞ 3.エンジニア管理職用 ＞ 業務改善 ＞ マニュアル・ツール</p></div></div></div><div class="manual-dialog-footer"><button type="button" onclick="closeManual(5)">閉じる</button></div></dialog>
+<dialog class="manual-dialog" id="manual-dialog-6" aria-labelledby="manual-title-6"><div class="manual-dialog-top"><h2 id="manual-title-6">商談ムーブ固定マニュアル・FAQ</h2><button type="button" onclick="closeManual(6)" aria-label="閉じる">×</button></div><div class="manual-card manual-partial"><div class="manual-source">対応先：商談ムーブ固定マニュアル・FAQ</div><div class="manual-files"><div class="manual-file"><div class="manual-filename">3.商談ムーブ固定マニュアル（改訂版v2）.docx</div><small class="manual-link-pending">OneDriveリンク確認中</small><p class="manual-location">格納先：営業部 ＞ 2.エンジニア派遣事業部 ＞ 3.エンジニア管理職用 ＞ 業務改善 ＞ マニュアル・ツール</p></div><div class="manual-file"><div class="manual-filename">4.商談FAQ・反論集.docx</div><small class="manual-link-pending">OneDriveリンク確認中</small><p class="manual-location">格納先：営業部 ＞ 2.エンジニア派遣事業部 ＞ 3.エンジニア管理職用 ＞ 業務改善 ＞ マニュアル・ツール</p></div></div><div class="manual-gap"><p><strong>不足している内容</strong>人財ピックアップの依頼先、必須条件、期限、差し戻しの流れ。</p><p><strong>追加するとよいもの</strong>人財ピックアップ依頼テンプレと、候補選定から企業提案までの手順。</p></div></div><div class="manual-dialog-footer"><button type="button" onclick="closeManual(6)">閉じる</button></div></dialog>
+<dialog class="manual-dialog" id="manual-dialog-7" aria-labelledby="manual-title-7"><div class="manual-dialog-top"><h2 id="manual-title-7">商談後フォローマニュアル</h2><button type="button" onclick="closeManual(7)" aria-label="閉じる">×</button></div><div class="manual-card manual-partial"><div class="manual-source">対応先：商談後フォローマニュアル</div><div class="manual-files"><div class="manual-file"><div class="manual-filename">2-B.商談後フォローマニュアル.docx</div><small class="manual-link-pending">OneDriveリンク確認中</small><p class="manual-location">格納先：営業部 ＞ 2.エンジニア派遣事業部 ＞ 3.エンジニア管理職用 ＞ 業務改善 ＞ マニュアル・ツール</p></div></div><div class="manual-gap"><p><strong>不足している内容</strong>文字起こし後のClaude・Slack・Gmail・楽テルの現行操作と確認手順。</p><p><strong>追加するとよいもの</strong>商談後処理チェックリスト：文章作成→上司確認→報告→送付→記録→次回日付。</p></div></div><div class="manual-dialog-footer"><button type="button" onclick="closeManual(7)">閉じる</button></div></dialog>
+<dialog class="manual-dialog" id="manual-dialog-8" aria-labelledby="manual-title-8"><div class="manual-dialog-top"><h2 id="manual-title-8">入社フロー・契約関係の既存資料</h2><button type="button" onclick="closeManual(8)" aria-label="閉じる">×</button></div><div class="manual-card manual-partial"><div class="manual-source">対応先：入社フロー・契約関係の既存資料</div><div class="manual-files"><div class="manual-file"><div class="manual-filename">新規・在日入社フロー完全版.docx</div><small class="manual-link-pending">OneDriveリンク確認中</small><p class="manual-location">格納先：営業部 ＞ 1.全事業部　営業管理関係 ＞ 5.教育資料・マニュアル ＞ 人財内定後の動き</p></div></div><div class="manual-gap"><p><strong>不足している内容</strong>既存資料に旧会社名・旧連絡手段があり、現行の原本／電子契約の手順を要確認。</p><p><strong>追加するとよいもの</strong>契約締結手順：契約種類・依頼先・承認・締結方法・回収期限・保管場所・更新。</p></div></div><div class="manual-dialog-footer"><button type="button" onclick="closeManual(8)">閉じる</button></div></dialog>
+<dialog class="manual-dialog" id="manual-dialog-9" aria-labelledby="manual-title-9"><div class="manual-dialog-top"><h2 id="manual-title-9">新・ビザ申請ご案内マニュアル</h2><button type="button" onclick="closeManual(9)" aria-label="閉じる">×</button></div><div class="manual-card manual-ready"><div class="manual-source">対応先：新・ビザ申請ご案内マニュアル</div><div class="manual-files"><div class="manual-file"><div class="manual-filename">新・ビザ申請ご案内マニュアル.docx</div><small class="manual-link-pending">OneDriveリンク確認中</small><p class="manual-location">格納先：加納斗良士 - 1.契約関係・ビザ申請格納 ＞ 【新】ビザ申請案内セット</p></div></div></div><div class="manual-dialog-footer"><button type="button" onclick="closeManual(9)">閉じる</button></div></dialog>
+<dialog class="manual-dialog" id="manual-dialog-10" aria-labelledby="manual-title-10"><div class="manual-dialog-top"><h2 id="manual-title-10">新規・在日入社フロー完全版</h2><button type="button" onclick="closeManual(10)" aria-label="閉じる">×</button></div><div class="manual-card manual-partial"><div class="manual-source">対応先：新規・在日入社フロー完全版</div><div class="manual-files"><div class="manual-file"><div class="manual-filename">新規・在日入社フロー完全版.docx</div><small class="manual-link-pending">OneDriveリンク確認中</small><p class="manual-location">格納先：営業部 ＞ 1.全事業部　営業管理関係 ＞ 5.教育資料・マニュアル ＞ 人財内定後の動き</p></div></div><div class="manual-gap"><p><strong>不足している内容</strong>書類回収後のGCO入力・Slack報告・完了確認の具体的な手順。</p><p><strong>追加するとよいもの</strong>入社書類チェックリストと、入力項目・報告例・保管先を示す画面付き手順。</p></div></div><div class="manual-dialog-footer"><button type="button" onclick="closeManual(10)">閉じる</button></div></dialog>
+<dialog class="manual-dialog" id="manual-dialog-11" aria-labelledby="manual-title-11"><div class="manual-dialog-top"><h2 id="manual-title-11">GCO社内管理</h2><button type="button" onclick="closeManual(11)" aria-label="閉じる">×</button></div><div class="manual-card manual-missing"><div class="manual-source">対応先：GCO社内管理</div><p class="manual-note">操作マニュアルが今回の調査では未確認</p></div><div class="manual-dialog-footer"><button type="button" onclick="closeManual(11)">閉じる</button></div></dialog>
+<dialog class="manual-dialog" id="manual-dialog-12" aria-labelledby="manual-title-12"><div class="manual-dialog-top"><h2 id="manual-title-12">新規・在日入社フロー完全版・引っ越し作業マニュアル</h2><button type="button" onclick="closeManual(12)" aria-label="閉じる">×</button></div><div class="manual-card manual-partial"><div class="manual-source">対応先：新規・在日入社フロー完全版・引っ越し作業マニュアル</div><div class="manual-files"><div class="manual-file"><div class="manual-filename">新規・在日入社フロー完全版.docx</div><small class="manual-link-pending">OneDriveリンク確認中</small><p class="manual-location">格納先：営業部 ＞ 1.全事業部　営業管理関係 ＞ 5.教育資料・マニュアル ＞ 人財内定後の動き</p></div><div class="manual-file"><div class="manual-filename">引っ越し作業マニュアル .docx</div><small class="manual-link-pending">OneDriveリンク確認中</small><p class="manual-location">格納先：営業部 ＞ 2.エンジニア派遣事業部 ＞ 3.エンジニア管理職用 ＞ エンジニア管理用 ＞ 高橋確認用フォルダ ＞ 榊原</p></div></div><div class="manual-gap"><p><strong>不足している内容</strong>就業場所・備品の確認項目、担当者、準備完了の判断基準。</p><p><strong>追加するとよいもの</strong>受入準備チェックリスト：物件・鍵・ライフライン・備品・担当・期限・完了確認。</p></div></div><div class="manual-dialog-footer"><button type="button" onclick="closeManual(12)">閉じる</button></div></dialog>
+<dialog class="manual-dialog" id="manual-dialog-13" aria-labelledby="manual-title-13"><div class="manual-dialog-top"><h2 id="manual-title-13">顧客関係値構築ガイド・商談後フォローマニュアル</h2><button type="button" onclick="closeManual(13)" aria-label="閉じる">×</button></div><div class="manual-card manual-partial"><div class="manual-source">対応先：顧客関係値構築ガイド・商談後フォローマニュアル</div><div class="manual-files"><div class="manual-file"><div class="manual-filename">顧客関係値構築_完全ガイド (1).pptx</div><small class="manual-link-pending">OneDriveリンク確認中</small><p class="manual-location">格納先：エンジニア派遣事業部 ＞ 1.全事業部　営業管理関係 ＞ 5.教育資料・マニュアル ＞ 入社フローマニュアル</p></div><div class="manual-file"><div class="manual-filename">2-B.商談後フォローマニュアル.docx</div><small class="manual-link-pending">OneDriveリンク確認中</small><p class="manual-location">格納先：営業部 ＞ 2.エンジニア派遣事業部 ＞ 3.エンジニア管理職用 ＞ 業務改善 ＞ マニュアル・ツール</p></div></div><div class="manual-gap"><p><strong>不足している内容</strong>資料ごとにフォロー頻度が異なる。クレーム報告・緊急時の連絡手順も補完候補。</p><p><strong>追加するとよいもの</strong>統一した訪問・連絡基準と、緊急度・報告先・対応期限・再発防止を記録する様式。</p></div></div><div class="manual-dialog-footer"><button type="button" onclick="closeManual(13)">閉じる</button></div></dialog>
+<dialog class="manual-dialog" id="manual-dialog-14" aria-labelledby="manual-title-14"><div class="manual-dialog-top"><h2 id="manual-title-14">顧客関係値構築ガイド・商談後フォローマニュアル</h2><button type="button" onclick="closeManual(14)" aria-label="閉じる">×</button></div><div class="manual-card manual-ready"><div class="manual-source">対応先：顧客関係値構築ガイド・商談後フォローマニュアル</div><div class="manual-files"><div class="manual-file"><div class="manual-filename">顧客関係値構築_完全ガイド (1).pptx</div><small class="manual-link-pending">OneDriveリンク確認中</small><p class="manual-location">格納先：エンジニア派遣事業部 ＞ 1.全事業部　営業管理関係 ＞ 5.教育資料・マニュアル ＞ 入社フローマニュアル</p></div><div class="manual-file"><div class="manual-filename">2-B.商談後フォローマニュアル.docx</div><small class="manual-link-pending">OneDriveリンク確認中</small><p class="manual-location">格納先：営業部 ＞ 2.エンジニア派遣事業部 ＞ 3.エンジニア管理職用 ＞ 業務改善 ＞ マニュアル・ツール</p></div></div></div><div class="manual-dialog-footer"><button type="button" onclick="closeManual(14)">閉じる</button></div></dialog>
+<dialog class="manual-dialog" id="manual-dialog-15" aria-labelledby="manual-title-15"><div class="manual-dialog-top"><h2 id="manual-title-15">正社員登用の覚書・見積書あり</h2><button type="button" onclick="closeManual(15)" aria-label="閉じる">×</button></div><div class="manual-card manual-missing"><div class="manual-source">対応先：正社員登用の覚書・見積書あり</div><p class="manual-note">書式はあるが、一連の手順マニュアルが未確認</p></div><div class="manual-dialog-footer"><button type="button" onclick="closeManual(15)">閉じる</button></div></dialog>
+<dialog class="manual-dialog" id="manual-dialog-16" aria-labelledby="manual-title-16"><div class="manual-dialog-top"><h2 id="manual-title-16">新規・在日入社フロー完全版・引っ越し作業マニュアル</h2><button type="button" onclick="closeManual(16)" aria-label="閉じる">×</button></div><div class="manual-card manual-partial"><div class="manual-source">対応先：新規・在日入社フロー完全版・引っ越し作業マニュアル</div><div class="manual-files"><div class="manual-file"><div class="manual-filename">新規・在日入社フロー完全版.docx</div><small class="manual-link-pending">OneDriveリンク確認中</small><p class="manual-location">格納先：営業部 ＞ 1.全事業部　営業管理関係 ＞ 5.教育資料・マニュアル ＞ 人財内定後の動き</p></div><div class="manual-file"><div class="manual-filename">引っ越し作業マニュアル .docx</div><small class="manual-link-pending">OneDriveリンク確認中</small><p class="manual-location">格納先：営業部 ＞ 2.エンジニア派遣事業部 ＞ 3.エンジニア管理職用 ＞ エンジニア管理用 ＞ 高橋確認用フォルダ ＞ 榊原</p></div></div><div class="manual-gap"><p><strong>不足している内容</strong>家具家電・買い出しの基準、予算・精算、住所変更の確認方法。</p><p><strong>追加するとよいもの</strong>生活準備チェックリスト：購入品・予算・担当・転出入・住所変更・提出完了確認。</p></div></div><div class="manual-dialog-footer"><button type="button" onclick="closeManual(16)">閉じる</button></div></dialog>
+<dialog class="manual-dialog" id="manual-dialog-17" aria-labelledby="manual-title-17"><div class="manual-dialog-top"><h2 id="manual-title-17">入社フロー・スタッフ対応の既存資料</h2><button type="button" onclick="closeManual(17)" aria-label="閉じる">×</button></div><div class="manual-card manual-partial"><div class="manual-source">対応先：入社フロー・スタッフ対応の既存資料</div><div class="manual-files"><div class="manual-file"><div class="manual-filename">新規・在日入社フロー完全版.docx</div><small class="manual-link-pending">OneDriveリンク確認中</small><p class="manual-location">格納先：営業部 ＞ 1.全事業部　営業管理関係 ＞ 5.教育資料・マニュアル ＞ 人財内定後の動き</p></div><div class="manual-file"><div class="manual-filename">外国籍派遣スタッフ対応マニュアルv5_2.pptx</div><small class="manual-link-pending">OneDriveリンク確認中</small><p class="manual-location">格納先：営業部 ＞ 2.エンジニア派遣事業部 ＞ 1.営業活動 ＞ 3.人財管理・振り先募集</p></div></div><div class="manual-gap"><p><strong>不足している内容</strong>現行の初日説明をまとめた台本と、本人が理解できたかの確認方法。</p><p><strong>追加するとよいもの</strong>オリエンテーション台本：勤怠・給与・連絡先・安全・ルール・通訳・理解確認。</p></div></div><div class="manual-dialog-footer"><button type="button" onclick="closeManual(17)">閉じる</button></div></dialog>
+<dialog class="manual-dialog" id="manual-dialog-18" aria-labelledby="manual-title-18"><div class="manual-dialog-top"><h2 id="manual-title-18">外国籍派遣スタッフ対応マニュアル</h2><button type="button" onclick="closeManual(18)" aria-label="閉じる">×</button></div><div class="manual-card manual-partial"><div class="manual-source">対応先：外国籍派遣スタッフ対応マニュアル</div><div class="manual-files"><div class="manual-file"><div class="manual-filename">外国籍派遣スタッフ対応マニュアルv5_2.pptx</div><small class="manual-link-pending">OneDriveリンク確認中</small><p class="manual-location">格納先：営業部 ＞ 2.エンジニア派遣事業部 ＞ 1.営業活動 ＞ 3.人財管理・振り先募集</p></div></div><div class="manual-gap"><p><strong>不足している内容</strong>退職が決まった後の社内・派遣先連絡、書類、住居、最終給与などの手順。</p><p><strong>追加するとよいもの</strong>相談・退職対応チェックリスト：事実確認→改善→報告→退職手続き→完了確認。</p></div></div><div class="manual-dialog-footer"><button type="button" onclick="closeManual(18)">閉じる</button></div></dialog><script>
+let manualOpener=null;
+function openManual(n){manualOpener=document.activeElement;document.getElementById('manual-dialog-'+n).showModal();}
+function closeManual(n){document.getElementById('manual-dialog-'+n).close();}
+document.querySelectorAll('.manual-dialog').forEach(d=>{d.addEventListener('close',()=>{if(manualOpener)manualOpener.focus();});d.addEventListener('click',e=>{if(e.target===d){const r=d.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)d.close();}});});
+</script></body></html>
