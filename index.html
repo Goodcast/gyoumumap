@@ -1,4 +1,6 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found]){display:none!important}</style></head><body>
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found]){display:none!important}</style><style>
+.manual-legend{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:18px auto 8px}.manual-badge{display:inline-block;border-radius:6px;padding:4px 9px;font-size:12px;font-weight:700;line-height:1.5;white-space:normal}.manual-ready{background:#dcfce7;color:#166534}.manual-partial{background:#fef3c7;color:#854d0e}.manual-missing{background:#fee2e2;color:#991b1b}.manual-card{margin:10px 0 14px;padding:12px 14px;border:1px solid;border-left-width:5px;border-radius:8px;line-height:1.8}.manual-card.manual-ready{border-color:#86efac}.manual-card.manual-partial{border-color:#fcd34d}.manual-card.manual-missing{border-color:#fca5a5}.manual-source{font-weight:700}.manual-note{font-size:12px;margin:2px 0 0}.l2-header>.manual-badge{margin-left:auto;flex-shrink:0;max-width:42%}.manual-help{font-size:12px;text-align:center;color:var(--text-muted);line-height:1.7;margin:8px 0 0}@media(max-width:600px){.l2-header{flex-wrap:wrap}.l2-header>.manual-badge{font-size:11px;max-width:100%}.manual-card{font-size:12px}}
+</style></head><body>
 <title>エンジニア派遣事業部 業務マップ</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap">
 <style>
@@ -347,7 +349,7 @@
     <div class="legend-item"><div class="legend-dot" style="background:#4A90E2"></div>小項目</div>
     <div class="legend-item"><div class="legend-dot" style="background:#C8D8EC"></div>詳細</div>
   </div>
-</header>
+<div class="manual-legend"><span class="manual-badge manual-ready">対応資料あり</span><span class="manual-badge manual-partial">補足が必要</span><span class="manual-badge manual-missing">マニュアル未整備（要確認）</span></div><p class="manual-help">中項目ごとの整備状況を表示しています。未整備は今回の調査に基づく仮判定です。<br>資料名・対応先を表示中です。マニュアルへのリンクは順次設定します。</p></header>
 
 <div class="tree">
 
@@ -364,9 +366,10 @@
         <div class="l2-header" onclick="toggle('l2-1-1')">
           <div class="l2-bar"></div>
           <span class="l2-label">架電エリア決め</span>
+          <span class="manual-badge manual-ready">対応資料あり</span>
           <span class="l2-chevron">▶</span>
         </div>
-        <div class="l2-body">
+        <div class="l2-body"><div class="manual-card manual-ready"><div class="manual-source">対応先：楽テルに記載</div></div>
           <div class="l3 l3-leaf">
             <div class="l3-header">
               <div class="l3-dot"></div>
@@ -380,9 +383,10 @@
         <div class="l2-header" onclick="toggle('l2-1-2')">
           <div class="l2-bar"></div>
           <span class="l2-label">架電・アプローチ</span>
+          <span class="manual-badge manual-ready">対応資料あり</span>
           <span class="l2-chevron">▶</span>
         </div>
-        <div class="l2-body">
+        <div class="l2-body"><div class="manual-card manual-ready"><div class="manual-source">対応先：切り返し君の架電ナビ</div></div>
           <div class="l3 l3-leaf">
             <div class="l3-header">
               <div class="l3-dot"></div>
@@ -413,9 +417,10 @@
         <div class="l2-header" onclick="toggle('l2-1-3')">
           <div class="l2-bar"></div>
           <span class="l2-label">アポ管理・報告</span>
+          <span class="manual-badge manual-partial">補足が必要</span>
           <span class="l2-chevron">▶</span>
         </div>
-        <div class="l2-body">
+        <div class="l2-body"><div class="manual-card manual-partial"><div class="manual-source">対応先：楽テル使用方法マニュアル</div><p class="manual-note">カレンダー・Zoom登録の手順を補足</p></div>
           <div class="l3" id="l3-1-3-1">
             <div class="l3-header" onclick="toggle('l3-1-3-1')">
               <div class="l3-dot"></div>
@@ -481,9 +486,10 @@
         <div class="l2-header" onclick="toggle('l2-2-1')">
           <div class="l2-bar"></div>
           <span class="l2-label">事前準備</span>
+          <span class="manual-badge manual-partial">補足が必要</span>
           <span class="l2-chevron">▶</span>
         </div>
-        <div class="l2-body">
+        <div class="l2-body"><div class="manual-card manual-partial"><div class="manual-source">対応先：商談ムーブ固定マニュアル・商談後フォローマニュアル</div><p class="manual-note">事前調査の具体的な手順を補足</p></div>
           <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">どんな会社か・事業内容・規模感の確認</span></div></div>
           <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">企業の近隣大手会社の確認</span></div></div>
           <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">過去ハローワークの求人情報の確認</span></div></div>
@@ -495,9 +501,10 @@
         <div class="l2-header" onclick="toggle('l2-2-2')">
           <div class="l2-bar"></div>
           <span class="l2-label">ヒアリング</span>
+          <span class="manual-badge manual-ready">対応資料あり</span>
           <span class="l2-chevron">▶</span>
         </div>
-        <div class="l2-body">
+        <div class="l2-body"><div class="manual-card manual-ready"><div class="manual-source">対応先：商談ムーブ固定マニュアル・ヒアリングシート・FAQ</div></div>
           <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">採用状況の確認（募集背景・採用媒体・採用実績など）</span></div></div>
           <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">労働条件の確認（給与相場・勤務時間・待遇など）</span></div></div>
           <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">職場環境の確認（社内年齢層・定着率・外国籍の有無など）</span></div></div>
@@ -510,9 +517,10 @@
         <div class="l2-header" onclick="toggle('l2-2-3')">
           <div class="l2-bar"></div>
           <span class="l2-label">提案・クロージング</span>
+          <span class="manual-badge manual-partial">補足が必要</span>
           <span class="l2-chevron">▶</span>
         </div>
-        <div class="l2-body">
+        <div class="l2-body"><div class="manual-card manual-partial"><div class="manual-source">対応先：商談ムーブ固定マニュアル・FAQ</div><p class="manual-note">人財ピックアップ依頼の手順を補足</p></div>
           <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">営業資料を用いて企業の課題・現状について訴求</span></div></div>
           <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">人財のピックアップ</span></div></div>
           <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">社内展開用の提案資料作成</span></div></div>
@@ -523,9 +531,10 @@
         <div class="l2-header" onclick="toggle('l2-2-4')">
           <div class="l2-bar"></div>
           <span class="l2-label">商談後フォロー</span>
+          <span class="manual-badge manual-partial">補足が必要</span>
           <span class="l2-chevron">▶</span>
         </div>
-        <div class="l2-body">
+        <div class="l2-body"><div class="manual-card manual-partial"><div class="manual-source">対応先：商談後フォローマニュアル</div><p class="manual-note">報告・メール送付など現行の操作手順を補足</p></div>
           <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">商談内容の文字起こし</span></div></div>
           <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">Claudeの「アポ報告お礼メール」プロジェクトでアポ報告・お礼メール文章を出力</span></div></div>
           <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">Slackの#アポ報告に出力済み内容を添付・上司へ今後のアクションを報告し精査</span></div></div>
@@ -565,9 +574,10 @@
         <div class="l2-header" onclick="toggle('l2-3-1')">
           <div class="l2-bar"></div>
           <span class="l2-label">契約書類</span>
+          <span class="manual-badge manual-partial">補足が必要</span>
           <span class="l2-chevron">▶</span>
         </div>
-        <div class="l2-body">
+        <div class="l2-body"><div class="manual-card manual-partial"><div class="manual-source">対応先：入社フロー・契約関係の既存資料</div><p class="manual-note">旧資料を現行の契約手順に更新</p></div>
           <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">労働者派遣基本契約書（新規取引企業と契約締結時）</span></div></div>
           <div class="l3" id="l3-3-1-2">
             <div class="l3-header" onclick="toggle('l3-3-1-2')">
@@ -587,9 +597,10 @@
         <div class="l2-header" onclick="toggle('l2-3-2')">
           <div class="l2-bar"></div>
           <span class="l2-label">ビザ申請書類の回収</span>
+          <span class="manual-badge manual-ready">対応資料あり</span>
           <span class="l2-chevron">▶</span>
         </div>
-        <div class="l2-body">
+        <div class="l2-body"><div class="manual-card manual-ready"><div class="manual-source">対応先：新・ビザ申請ご案内マニュアル</div></div>
           <div class="l3" id="l3-3-2-1">
             <div class="l3-header" onclick="toggle('l3-3-2-1')">
               <div class="l3-dot"></div>
@@ -626,9 +637,10 @@
         <div class="l2-header" onclick="toggle('l2-3-3')">
           <div class="l2-bar"></div>
           <span class="l2-label">入社・就業書類</span>
+          <span class="manual-badge manual-partial">補足が必要</span>
           <span class="l2-chevron">▶</span>
         </div>
-        <div class="l2-body">
+        <div class="l2-body"><div class="manual-card manual-partial"><div class="manual-source">対応先：新規・在日入社フロー完全版</div><p class="manual-note">社内登録・報告の手順を補足</p></div>
           <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">雇用契約書</span></div></div>
           <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">入社誓約書</span></div></div>
           <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">内容確認書</span></div></div>
@@ -645,9 +657,10 @@
         <div class="l2-header" onclick="toggle('l2-3-4')">
           <div class="l2-bar"></div>
           <span class="l2-label">社内管理</span>
+          <span class="manual-badge manual-missing">マニュアル未整備（要確認）</span>
           <span class="l2-chevron">▶</span>
         </div>
-        <div class="l2-body">
+        <div class="l2-body"><div class="manual-card manual-missing"><div class="manual-source">対応先：GCO社内管理</div><p class="manual-note">操作マニュアルが今回の調査では未確認</p></div>
           <div class="l3" id="l3-3-4-1">
             <div class="l3-header" onclick="toggle('l3-3-4-1')">
               <div class="l3-dot"></div>
@@ -686,9 +699,10 @@
         <div class="l2-header" onclick="toggle('l2-4-1')">
           <div class="l2-bar"></div>
           <span class="l2-label">受け入れ準備サポート</span>
+          <span class="manual-badge manual-partial">補足が必要</span>
           <span class="l2-chevron">▶</span>
         </div>
-        <div class="l2-body">
+        <div class="l2-body"><div class="manual-card manual-partial"><div class="manual-source">対応先：新規・在日入社フロー完全版・引っ越し作業マニュアル</div><p class="manual-note">就業場所・備品の確認手順を補足</p></div>
           <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">【新規人財】ビザ申請日の2週間後に#不動産グエンさんへ物件ピックアップ依頼 → 入国許可後に契約（入居日は入国日に合わせる）</span></div></div>
           <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">【在日人財】内定確度が高い段階で#不動産グエンさんへ物件ピックアップ依頼 → 入社希望日に合わせて最短で手配（入居日と入社日を合わせる）</span></div></div>
           <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">就業場所・備品の確認</span></div></div>
@@ -700,9 +714,10 @@
         <div class="l2-header" onclick="toggle('l2-4-2')">
           <div class="l2-bar"></div>
           <span class="l2-label">就業中のフォロー</span>
+          <span class="manual-badge manual-partial">補足が必要</span>
           <span class="l2-chevron">▶</span>
         </div>
-        <div class="l2-body">
+        <div class="l2-body"><div class="manual-card manual-partial"><div class="manual-source">対応先：顧客関係値構築ガイド・商談後フォローマニュアル</div><p class="manual-note">フォロー頻度・トラブル報告手順を統一</p></div>
           <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">定期巡回・訪問（現場確認）</span></div></div>
           <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">就業状況の確認（業務内容・勤怠など）</span></div></div>
           <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">評価・報告（スタッフの働きぶりを企業にヒアリング）</span></div></div>
@@ -715,9 +730,10 @@
         <div class="l2-header" onclick="toggle('l2-4-3')">
           <div class="l2-bar"></div>
           <span class="l2-label">追加提案</span>
+          <span class="manual-badge manual-ready">対応資料あり</span>
           <span class="l2-chevron">▶</span>
         </div>
-        <div class="l2-body">
+        <div class="l2-body"><div class="manual-card manual-ready"><div class="manual-source">対応先：顧客関係値構築ガイド・商談後フォローマニュアル</div></div>
           <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">増員ニーズのヒアリング</span></div></div>
           <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">人財ピックアップ・提案</span></div></div>
         </div>
@@ -728,9 +744,10 @@
         <div class="l2-header" onclick="toggle('l2-4-4')">
           <div class="l2-bar"></div>
           <span class="l2-label">正社員登用対応　<span style="font-size:11px;opacity:0.7">※詳細確認中</span></span>
+          <span class="manual-badge manual-missing">マニュアル未整備（要確認）</span>
           <span class="l2-chevron">▶</span>
         </div>
-        <div class="l2-body">
+        <div class="l2-body"><div class="manual-card manual-missing"><div class="manual-source">対応先：正社員登用の覚書・見積書あり</div><p class="manual-note">書式はあるが、一連の手順マニュアルが未確認</p></div>
           <div class="l3" id="l3-4-4-1">
             <div class="l3-header" onclick="toggle('l3-4-4-1')">
               <div class="l3-dot"></div>
@@ -765,9 +782,10 @@
         <div class="l2-header" onclick="toggle('l2-5-1')">
           <div class="l2-bar"></div>
           <span class="l2-label">入社前準備</span>
+          <span class="manual-badge manual-partial">補足が必要</span>
           <span class="l2-chevron">▶</span>
         </div>
-        <div class="l2-body">
+        <div class="l2-body"><div class="manual-card manual-partial"><div class="manual-source">対応先：新規・在日入社フロー完全版・引っ越し作業マニュアル</div><p class="manual-note">家具家電・購入品など生活準備の手順を補足</p></div>
           <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">備品・生活用品の買い出し手配</span></div></div>
           <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">家具家電の手配（必要な場合）</span></div></div>
           <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">引越し・転入手続きのサポート</span></div></div>
@@ -781,9 +799,10 @@
         <div class="l2-header" onclick="toggle('l2-5-2')">
           <div class="l2-bar"></div>
           <span class="l2-label">入社時オリエンテーション</span>
+          <span class="manual-badge manual-partial">補足が必要</span>
           <span class="l2-chevron">▶</span>
         </div>
-        <div class="l2-body">
+        <div class="l2-body"><div class="manual-card manual-partial"><div class="manual-source">対応先：入社フロー・スタッフ対応の既存資料</div><p class="manual-note">現行の入社当日の説明内容を整理</p></div>
           <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">就業場所への同行・挨拶</span></div></div>
           <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">社内ルール・マナーの説明</span></div></div>
         </div>
@@ -794,9 +813,10 @@
         <div class="l2-header" onclick="toggle('l2-5-3')">
           <div class="l2-bar"></div>
           <span class="l2-label">就業中フォロー</span>
+          <span class="manual-badge manual-partial">補足が必要</span>
           <span class="l2-chevron">▶</span>
         </div>
-        <div class="l2-body">
+        <div class="l2-body"><div class="manual-card manual-partial"><div class="manual-source">対応先：外国籍派遣スタッフ対応マニュアル</div><p class="manual-note">退職決定後の手続きを補足</p></div>
           <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">給与・待遇に関する相談対応</span></div></div>
           <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">離職・退職相談への対応</span></div></div>
           <div class="l3 l3-leaf"><div class="l3-header"><div class="l3-dot"></div><span class="l3-label">トラブル対応（人間関係・職場環境など）</span></div></div>
