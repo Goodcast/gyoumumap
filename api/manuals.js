@@ -3,7 +3,7 @@ const { Readable } = require('node:stream');
 const MAX_PART = 2 * 1024 * 1024;
 const MAX_FILE = 25 * 1024 * 1024;
 const ID = /^[a-f0-9-]{36}$/;
-const TYPES = new Set(['application/pdf','image/png','image/jpeg','image/webp','application/vnd.openxmlformats-officedocument.wordprocessingml.document','application/vnd.openxmlformats-officedocument.presentationml.presentation']);
+const TYPES = new Set(['application/pdf','text/html','image/png','image/jpeg','image/webp','application/vnd.openxmlformats-officedocument.wordprocessingml.document','application/vnd.openxmlformats-officedocument.presentationml.presentation']);
 function createHandler(provided, env = process.env) {
  const sdk = () => provided || require('@vercel/blob');
  const json = (res, status, value) => {res.statusCode=status;res.setHeader('Content-Type','application/json; charset=utf-8');res.end(JSON.stringify(value));};
@@ -25,12 +25,12 @@ function createHandler(provided, env = process.env) {
    if(req.method==='GET'&&action==='list'){
     const heads=new Map();for(const b of await all('manuals/')){const m=b.pathname.match(/^manuals\/([a-f0-9-]{36})\/revisions\/([^/]+)\.json$/);if(m&&(!heads.has(m[1])||b.pathname>heads.get(m[1]).pathname))heads.set(m[1],b);}
     const docs=await Promise.all([...heads.values()].map(b=>read(b.pathname)));
-    return json(res,200,{manuals:docs.filter(d=>!d.archived).map(({id,title,category,summary,updatedAt,version,file})=>({id,title,category,summary,updatedAt,version,file:file?{name:file.name,type:file.type,size:file.size}:null}))});
+    return json(res,200,{manuals:docs.filter(d=>!d.archived).map(({id,title,category,summary,updatedAt,version,file,scope})=>({id,title,category,summary,updatedAt,version,scope,file:file?{name:file.name,type:file.type,size:file.size}:null}))});
    }
    if(req.method==='GET'&&action==='read')return json(res,200,await latest(url.searchParams.get('id')));
    if(req.method==='GET'&&action==='asset'){
     const doc=await latest(url.searchParams.get('id'));if(doc.archived||!doc.file)fail(404,'資料が見つかりません。');
-    res.setHeader('Content-Type',doc.file.type);res.setHeader('Content-Disposition','inline; filename="manual"');res.setHeader('Content-Length',doc.file.size);
+    if(doc.file.type==='text/html')res.setHeader('Content-Security-Policy',"sandbox; default-src 'none'; style-src 'unsafe-inline'; img-src data:; font-src data:;");res.setHeader('Content-Type',doc.file.type);res.setHeader('Content-Disposition','inline; filename="manual"');res.setHeader('Content-Length',doc.file.size);
     async function* stream(){for(let i=0;i<doc.file.parts;i++){const path='manuals/'+doc.id+'/files/'+doc.file.uploadId+'/part-'+String(i).padStart(3,'0');const r=await sdk().get(path,{access:'private',useCache:false});if(!r||r.statusCode!==200)throw Error('File missing');const reader=r.stream.getReader();try{while(true){const {done,value}=await reader.read();if(done)break;yield value;}}finally{reader.releaseLock();}}}
     return Readable.from(stream()).pipe(res);
    }
@@ -60,7 +60,7 @@ function createHandler(provided, env = process.env) {
     }
     if(!b.content.trim()&&!file)fail(400,'本文かファイルを追加してください。');
     const version=Date.now().toString().padStart(13,'0')+'-'+randomUUID();
-    const doc={id:b.id,title:b.title.trim(),category:String(b.category||'未分類').slice(0,80),summary:String(b.summary||'').slice(0,300),content:b.content,file,version,updatedAt:new Date().toISOString(),archived:Boolean(b.archived)};
+    const doc={id:b.id,scope:String(b.scope||previous?.scope||'general').slice(0,40),title:b.title.trim(),category:String(b.category||'未分類').slice(0,80),summary:String(b.summary||'').slice(0,300),content:b.content,file,version,updatedAt:new Date().toISOString(),archived:Boolean(b.archived)};
     await sdk().put('manuals/'+b.id+'/revisions/'+version+'.json',JSON.stringify(doc),{access:'private',addRandomSuffix:false,contentType:'application/json',allowOverwrite:false});return json(res,200,{ok:true,manual:doc});
    }
    fail(400,'操作が正しくありません。');
