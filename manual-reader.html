@@ -1,0 +1,19 @@
+<!doctype html><html lang="ja"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>マニュアル</title>
+<style>body{margin:0;font-family:system-ui,sans-serif;background:#e6e9ee;color:#172b46}header{position:sticky;top:0;background:white;padding:9px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;z-index:1;box-shadow:0 1px 4px #aaa}button,input{padding:6px;border:1px solid #ccd5df;border-radius:4px;background:white;color:#172b46}button{cursor:pointer}input{width:44px}main{padding:12px;overflow:auto;text-align:center}canvas{display:block;margin:auto;background:white;box-shadow:0 1px 5px #aaa}#status{font-size:12px}a{font-size:12px;color:#285f93}</style>
+<header><button id="prev" aria-label="前のページ">◀</button><label>ページ <input id="page" type="number" min="1" value="1"></label><span id="total"></span><button id="next" aria-label="次のページ">▶</button><button id="smaller" aria-label="縮小">−</button><button id="larger" aria-label="拡大">＋</button><button id="fit">幅に合わせる</button><a id="download" download>PDF保存</a><span id="status" role="status">読み込み中…</span></header><main><canvas id="paper" aria-label="マニュアル本文"></canvas></main>
+<script type="module">
+import * as pdfjs from './pdf.mjs';
+pdfjs.GlobalWorkerOptions.workerSrc='./pdf.worker.mjs';
+const name=new URLSearchParams(location.search).get('file');
+const status=document.getElementById('status'),canvas=document.getElementById('paper'),field=document.getElementById('page');
+let pdf,page=1,zoom=1,running=false,queued=false;
+async function draw(){if(!pdf)return;if(running){queued=true;return;}running=true;status.textContent='表示中…';try{const p=await pdf.getPage(page),initial=p.getViewport({scale:1}),width=Math.max(220,document.documentElement.clientWidth-30),scale=width/initial.width*zoom,viewport=p.getViewport({scale}),ratio=Math.min(devicePixelRatio||1,2);canvas.width=Math.floor(viewport.width*ratio);canvas.height=Math.floor(viewport.height*ratio);canvas.style.width=viewport.width+'px';canvas.style.height=viewport.height+'px';await p.render({canvasContext:canvas.getContext('2d'),viewport,transform:[ratio,0,0,ratio,0,0]}).promise;field.value=page;document.getElementById('prev').disabled=page<=1;document.getElementById('next').disabled=page>=pdf.numPages;status.textContent='表示完了';}catch(e){status.textContent='表示できませんでした。PDF保存から確認してください。';}finally{running=false;if(queued){queued=false;draw();}}}
+document.getElementById('prev').onclick=()=>{if(page>1){page--;draw();}};
+document.getElementById('next').onclick=()=>{if(pdf&&page<pdf.numPages){page++;draw();}};
+field.onchange=()=>{if(pdf){page=Math.max(1,Math.min(pdf.numPages,Number(field.value)||1));draw();}};
+document.getElementById('smaller').onclick=()=>{zoom=Math.max(.5,zoom-.2);draw();};
+document.getElementById('larger').onclick=()=>{zoom=Math.min(3,zoom+.2);draw();};
+document.getElementById('fit').onclick=()=>{zoom=1;draw();};
+window.addEventListener('resize',()=>draw());
+try{if(!/^manual-\d{2}\.pdf$/.test(name||''))throw Error('Invalid file');document.getElementById('download').href=name;pdf=await pdfjs.getDocument({url:name,isEvalSupported:false}).promise;field.max=pdf.numPages;document.getElementById('total').textContent='/ '+pdf.numPages;await draw();}catch(e){status.textContent='資料を読み込めませんでした。';}
+</script></html>
