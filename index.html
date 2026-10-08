@@ -863,4 +863,4 @@ function selectOriginalManual(n,index){const dialog=document.getElementById('man
 function reloadOriginalManual(n){const dialog=document.getElementById('manual-dialog-'+n);const i=Number(dialog.dataset.originalSelected||0);const ref=originalManuals[n][i];const frame=dialog.querySelector('.original-viewer');frame.src='about:blank';requestAnimationFrame(()=>{frame.src=ref.url;});}
 const originalOpenManual=openManual;
 openManual=function(n){const dialog=document.getElementById('manual-dialog-'+n);if(originalManuals[n].length&&!dialog.dataset.originalReady){selectOriginalManual(n,0);dialog.dataset.originalReady='1';}originalOpenManual(n);};
-</script></body></html>
+</script><script src="manual-library.js" defer></script></body></html>

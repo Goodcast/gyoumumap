@@ -4,7 +4,8 @@
 <script type="module">
 import * as pdfjs from './pdf.mjs';
 pdfjs.GlobalWorkerOptions.workerSrc='./pdf.worker.mjs';
-const name=new URLSearchParams(location.search).get('file');
+const params=new URLSearchParams(location.search),id=params.get('id');
+const name=id&&/^[a-f0-9-]{36}$/.test(id)?'/api/manuals?action=asset&id='+encodeURIComponent(id)+'&v='+encodeURIComponent(params.get('v')||''):params.get('file');
 const status=document.getElementById('status'),canvas=document.getElementById('paper'),field=document.getElementById('page');
 let pdf,page=1,zoom=1,running=false,queued=false;
 async function draw(){if(!pdf)return;if(running){queued=true;return;}running=true;status.textContent='表示中…';try{const p=await pdf.getPage(page),initial=p.getViewport({scale:1}),width=Math.max(220,document.documentElement.clientWidth-30),scale=width/initial.width*zoom,viewport=p.getViewport({scale}),ratio=Math.min(devicePixelRatio||1,2);canvas.width=Math.floor(viewport.width*ratio);canvas.height=Math.floor(viewport.height*ratio);canvas.style.width=viewport.width+'px';canvas.style.height=viewport.height+'px';await p.render({canvasContext:canvas.getContext('2d'),viewport,transform:[ratio,0,0,ratio,0,0]}).promise;field.value=page;document.getElementById('prev').disabled=page<=1;document.getElementById('next').disabled=page>=pdf.numPages;status.textContent='表示完了';}catch(e){status.textContent='表示できませんでした。PDF保存から確認してください。';}finally{running=false;if(queued){queued=false;draw();}}}
@@ -15,5 +16,5 @@ document.getElementById('smaller').onclick=()=>{zoom=Math.max(.5,zoom-.2);draw()
 document.getElementById('larger').onclick=()=>{zoom=Math.min(3,zoom+.2);draw();};
 document.getElementById('fit').onclick=()=>{zoom=1;draw();};
 window.addEventListener('resize',()=>draw());
-try{if(!/^manual-\d{2}\.pdf$/.test(name||''))throw Error('Invalid file');document.getElementById('download').href=name;pdf=await pdfjs.getDocument({url:name,isEvalSupported:false}).promise;field.max=pdf.numPages;document.getElementById('total').textContent='/ '+pdf.numPages;await draw();}catch(e){status.textContent='資料を読み込めませんでした。';}
+try{if(!id&&!/^manual-\d{2}\.pdf$/.test(name||''))throw Error('Invalid file');if(id&&!/^[a-f0-9-]{36}$/.test(id))throw Error('Invalid ID');document.getElementById('download').href=name;pdf=await pdfjs.getDocument({url:name,isEvalSupported:false,disableRange:Boolean(id)}).promise;field.max=pdf.numPages;document.getElementById('total').textContent='/ '+pdf.numPages;await draw();}catch(e){status.textContent='資料を読み込めませんでした。';}
 </script></html>
