@@ -14,6 +14,7 @@ function createHandler(provided, env = process.env) {
  async function all(prefix){const result=[];let cursor;do{const r=await sdk().list({prefix,cursor,limit:1000});result.push(...r.blobs);cursor=r.hasMore?r.cursor:null;}while(cursor);return result;}
  async function read(path){const r=await sdk().get(path,{access:'private',useCache:false});if(!r||r.statusCode!==200)fail(404,'資料が見つかりません。');return JSON.parse(await new Response(r.stream).text());}
  async function latest(id){if(!ID.test(id||''))fail(400,'資料IDが正しくありません。');const revisions=await all('manuals/'+id+'/revisions/');if(!revisions.length)fail(404,'資料が見つかりません。');revisions.sort((a,b)=>b.pathname.localeCompare(a.pathname));return read(revisions[0].pathname);}
+ async function requested(url){const id=url.searchParams.get('id'),version=url.searchParams.get('v');if(!version)return latest(id);if(!ID.test(id||'')||!/^\d+-[a-f0-9-]{36}$/.test(version))fail(400,'資料の履歴指定が正しくありません。');return read('manuals/'+id+'/revisions/'+version+'.json');}
  async function body(req){if(req.body&&typeof req.body==='object'&&!Buffer.isBuffer(req.body))return req.body;const chunks=[];let size=0;for await(const b of req){size+=b.length;if(size>3*1024*1024)fail(413,'送信データが大きすぎます。');chunks.push(b);}try{return JSON.parse(Buffer.concat(chunks).toString());}catch{fail(400,'送信形式が正しくありません。');}}
  return async function handler(req,res){
   res.setHeader('Cache-Control','no-store');res.setHeader('X-Content-Type-Options','nosniff');
@@ -27,9 +28,9 @@ function createHandler(provided, env = process.env) {
     const docs=await Promise.all([...heads.values()].map(b=>read(b.pathname)));
     return json(res,200,{manuals:docs.filter(d=>!d.archived).map(({id,title,category,summary,updatedAt,version,file,scope})=>({id,title,category,summary,updatedAt,version,scope,file:file?{name:file.name,type:file.type,size:file.size}:null}))});
    }
-   if(req.method==='GET'&&action==='read')return json(res,200,await latest(url.searchParams.get('id')));
+   if(req.method==='GET'&&action==='read')return json(res,200,await requested(url));
    if(req.method==='GET'&&action==='asset'){
-    const doc=await latest(url.searchParams.get('id'));if(doc.archived||!doc.file)fail(404,'資料が見つかりません。');
+    const doc=await requested(url);if(doc.archived||!doc.file)fail(404,'資料が見つかりません。');
     if(doc.file.type==='text/html')res.setHeader('Content-Security-Policy',"sandbox; default-src 'none'; style-src 'unsafe-inline'; img-src data:; font-src data:;");res.setHeader('Content-Type',doc.file.type);res.setHeader('Content-Disposition','inline; filename="manual"');res.setHeader('Content-Length',doc.file.size);
     async function* stream(){for(let i=0;i<doc.file.parts;i++){const path='manuals/'+doc.id+'/files/'+doc.file.uploadId+'/part-'+String(i).padStart(3,'0');const r=await sdk().get(path,{access:'private',useCache:false});if(!r||r.statusCode!==200)throw Error('File missing');const reader=r.stream.getReader();try{while(true){const {done,value}=await reader.read();if(done)break;yield value;}}finally{reader.releaseLock();}}}
     return Readable.from(stream()).pipe(res);
