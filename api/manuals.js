@@ -10,7 +10,7 @@ function createHandler(provided, env = process.env) {
  const fail = (status,message) => {const e=new Error(message);e.status=status;throw e;};
  const equal = (a,b) => {const x=Buffer.from(a||''),y=Buffer.from(b||'');return x.length===y.length&&timingSafeEqual(x,y);};
  const sign = value => createHmac('sha256',env.MANUAL_ADMIN_KEY||'').update(value).digest('hex');
- function authorized(req){const cookie=(req.headers.cookie||'').split(';').map(x=>x.trim()).find(x=>x.startsWith('manual_admin='));if(!cookie)return false;const [expiry,sig]=(cookie.slice(13)).split('.');return Number(expiry)>Date.now()&&equal(sig,sign(expiry));}
+ function authorized(req){if(env.MANUAL_PUBLIC_WRITE==='true')return true;const cookie=(req.headers.cookie||'').split(';').map(x=>x.trim()).find(x=>x.startsWith('manual_admin='));if(!cookie)return false;const [expiry,sig]=(cookie.slice(13)).split('.');return Number(expiry)>Date.now()&&equal(sig,sign(expiry));}
  async function all(prefix){const result=[];let cursor;do{const r=await sdk().list({prefix,cursor,limit:1000});result.push(...r.blobs);cursor=r.hasMore?r.cursor:null;}while(cursor);return result;}
  async function read(path){const r=await sdk().get(path,{access:'private',useCache:false});if(!r||r.statusCode!==200)fail(404,'資料が見つかりません。');return JSON.parse(await new Response(r.stream).text());}
  async function latest(id){if(!ID.test(id||''))fail(400,'資料IDが正しくありません。');const revisions=await all('manuals/'+id+'/revisions/');if(!revisions.length)fail(404,'資料が見つかりません。');revisions.sort((a,b)=>b.pathname.localeCompare(a.pathname));return read(revisions[0].pathname);}
@@ -20,7 +20,7 @@ function createHandler(provided, env = process.env) {
   try{
    const url=new URL(req.url,'https://map.local'),action=url.searchParams.get('action')||'list';
    const ready=Boolean(env.BLOB_STORE_ID||env.BLOB_READ_WRITE_TOKEN);
-   if(req.method==='GET'&&action==='status')return json(res,200,{ready,canManage:authorized(req),adminConfigured:Boolean(env.MANUAL_ADMIN_KEY)});
+   if(req.method==='GET'&&action==='status')return json(res,200,{ready,canManage:authorized(req),adminConfigured:Boolean(env.MANUAL_ADMIN_KEY),publicWrite:env.MANUAL_PUBLIC_WRITE==='true'});
    if(!ready)fail(503,'マニュアルの保存先を準備中です。');
    if(req.method==='GET'&&action==='list'){
     const heads=new Map();for(const b of await all('manuals/')){const m=b.pathname.match(/^manuals\/([a-f0-9-]{36})\/revisions\/([^/]+)\.json$/);if(m&&(!heads.has(m[1])||b.pathname>heads.get(m[1]).pathname))heads.set(m[1],b);}
