@@ -413,65 +413,14 @@
         </div>
       </div>
 
-      <div class="l2" id="l2-1-3">
-        <div class="l2-header" onclick="openAppointmentGuide()" role="button" tabindex="0" aria-haspopup="dialog" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openAppointmentGuide()}">
-          <div class="l2-bar"></div>
-          <span class="l2-label">楽テル更新・Googleカレンダー作成</span>
-          <span class="l2-chevron">▶</span>
-        </div>
-        <div class="l2-body" hidden><button type="button" class="manual-summary manual-ready" aria-haspopup="dialog" onclick="openManual(3)">マニュアル：<strong>切り返し君の架電ナビ</strong><span class="manual-detail-hint">詳細を見る</span></button>
-          <div class="l3" id="l3-1-3-1">
-            <div class="l3-header" onclick="toggle('l3-1-3-1')">
-              <div class="l3-dot"></div>
-              <span class="l3-label">楽テルの更新</span>
-              <span class="l3-chevron">▶</span>
-            </div>
-            <div class="l3-body">
-              <div class="l4"><span class="l4-desc">派遣ステータス「アポ取得済み」にチェックを入れる</span></div>
-              <div class="l4"><span class="l4-desc">アクション内容に担当者との会話内容を記載・ネクスト日付をアポ日に設定</span></div>
-              <div class="l4"><span class="l4-desc">C・BランクからアポはAランクに昇格させる</span></div>
-              <div class="l4"><span class="l4-desc">営業担当欄に自分の名前を入れる</span></div>
-            </div>
-          </div>
-          <div class="l3" id="l3-1-3-2">
-            <div class="l3-header" onclick="toggle('l3-1-3-2')">
-              <div class="l3-dot"></div>
-              <span class="l3-label">Googleカレンダーへの登録</span>
-              <span class="l3-chevron">▶</span>
-            </div>
-            <div class="l3-body">
-              <div class="l4">
-                <div class="l4-label" style="margin-bottom:4px">現地アポ</div>
-                <div class="flow">
-                  楽テルの企業情報をスクショ
-                  <span class="flow-arrow">→</span>
-                  Claudeの「カレンダーメール作成」プロジェクトでフォーマット作成
-                  <span class="flow-arrow">→</span>
-                  Googleカレンダーに貼り付け
-                </div>
-              </div>
-              <div class="l4">
-                <div class="l4-label" style="margin-bottom:4px">オンアポ</div>
-                <div class="flow">
-                  ZOOMリンク作成
-                  <span class="flow-arrow">→</span>
-                  楽テルの企業情報とZOOMリンクをスクショ
-                  <span class="flow-arrow">→</span>
-                  Claudeの「カレンダー作成」プロジェクトでフォーマット作成
-                  <span class="flow-arrow">→</span>
-                  Googleカレンダーに貼り付け
-                  <span class="flow-arrow">→</span>
-                  メール送信
-                </div>
-              </div>
-            </div>
-          </div>
+      <div class="l2 open" id="l2-1-3">
+        <div class="l2-header" onclick="toggle('l2-1-3')"><div class="l2-bar"></div><span class="l2-label">アポ管理・報告</span><span class="l2-chevron">▶</span></div>
+        <div class="l2-body">
+          <div class="l3" id="l3-1-3-1"><div class="l3-header" role="link" tabindex="0" onclick="openAppointmentGuide()"><div class="l3-dot"></div><span class="l3-label">楽テル更新・Googleカレンダー作成</span><span class="l3-chevron">▶</span></div><div class="l3-body"></div></div>
         </div>
       </div>
-
     </div>
   </div>
-
   <!-- 2. 商談 -->
   <div class="l1 open" id="l1-2">
     <div class="l1-header" onclick="toggle('l1-2')">
