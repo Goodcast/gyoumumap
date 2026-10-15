@@ -3,7 +3,7 @@ const { Readable } = require('node:stream');
 const MAX_PART = 2 * 1024 * 1024;
 const MAX_FILE = 25 * 1024 * 1024;
 const ID = /^[a-f0-9-]{36}$/;
-const TYPES = new Set(['application/pdf','text/html','image/png','image/jpeg','image/webp','application/vnd.openxmlformats-officedocument.wordprocessingml.document','application/vnd.openxmlformats-officedocument.presentationml.presentation']);
+const TYPES = new Set(['application/pdf','text/html','image/png','image/jpeg','image/webp','application/vnd.openxmlformats-officedocument.wordprocessingml.document','application/vnd.openxmlformats-officedocument.presentationml.presentation','application/vnd.openxmlformats-officedocument.spreadsheetml.sheet','application/msword','application/vnd.ms-excel','application/vnd.ms-powerpoint','application/vnd.ms-excel.sheet.macroEnabled.12']);
 function createHandler(provided, env = process.env) {
  const sdk = () => provided || require('@vercel/blob');
  const json = (res, status, value) => {res.statusCode=status;res.setHeader('Content-Type','application/json; charset=utf-8');res.end(JSON.stringify(value));};
@@ -35,7 +35,7 @@ function createHandler(provided, env = process.env) {
    if(req.method==='GET'&&action==='list'){
     const heads=new Map();for(const b of await all('manuals/')){const m=b.pathname.match(/^manuals\/([a-f0-9-]{36})\/revisions\/([^/]+)\.json$/);if(m&&(!heads.has(m[1])||b.pathname>heads.get(m[1]).pathname))heads.set(m[1],b);}
     const docs=await Promise.all([...heads.values()].map(b=>read(b.pathname)));
-    return json(res,200,{manuals:docs.filter(d=>!d.archived&&(authorized(req)||d.visibility!=='admin')).map(({id,title,category,summary,updatedAt,version,file,scope,visibility})=>({id,title,category,summary,updatedAt,version,scope,visibility:visibility||'public',file:file?{name:file.name,type:file.type,size:file.size}:null}))});
+    return json(res,200,{manuals:docs.filter(d=>(!d.archived||(authorized(req)&&url.searchParams.get('archived')==='include'))&&(authorized(req)||d.visibility!=='admin')).map(({id,title,category,summary,updatedAt,version,file,scope,visibility,archived})=>({id,title,category,summary,updatedAt,version,scope,archived:Boolean(archived),visibility:visibility||'public',file:file?{name:file.name,type:file.type,size:file.size}:null}))});
    }
    if(req.method==='GET'&&action==='read')return json(res,200,await accessible(req,url));
    if(req.method==='GET'&&action==='asset'){
@@ -75,6 +75,10 @@ function createHandler(provided, env = process.env) {
     const version=Date.now().toString().padStart(13,'0')+'-'+randomUUID();
     const doc={version,updatedAt:new Date().toISOString(),nodes:b.nodes.map(n=>({id:n.id,level:n.level,parent:n.parent,text:n.text,...(n.scope?{scope:n.scope}:{})}))};
     await sdk().put('business-map/revisions/'+version+'.json',JSON.stringify(doc),{access:'private',addRandomSuffix:false,allowOverwrite:false,contentType:'application/json'});return json(res,200,doc);
+   }
+   if(action==='archive'){
+    const previous=await latest(b.id);if(previous.version!==b.baseVersion)fail(409,'他の人が更新しました。管理一覧を開き直してください。');if(typeof b.archived!=='boolean')fail(400,'削除状態が正しくありません。');
+    const version=Date.now().toString().padStart(13,'0')+'-'+randomUUID(),doc={...previous,version,updatedAt:new Date().toISOString(),archived:b.archived};await sdk().put('manuals/'+b.id+'/revisions/'+version+'.json',JSON.stringify(doc),{access:'private',addRandomSuffix:false,allowOverwrite:false,contentType:'application/json'});return json(res,200,{ok:true});
    }
    if(action==='part'){
     if(!ID.test(b.id||'')||!ID.test(b.uploadId||'')||!Number.isInteger(b.index)||b.index<0||b.index>12)fail(400,'ファイル形式が正しくありません。');
