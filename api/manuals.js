@@ -92,7 +92,8 @@ function createHandler(provided, env = process.env) {
     }
     if(!b.content.trim()&&!file)fail(400,'本文かファイルを追加してください。');
     const version=Date.now().toString().padStart(13,'0')+'-'+randomUUID();
-    const doc={id:b.id,scope:String(b.scope||previous?.scope||'general').slice(0,40),title:b.title.trim(),category:String(b.category||'未分類').slice(0,80),summary:String(b.summary||'').slice(0,300),content:b.content,file,version,updatedAt:new Date().toISOString(),archived:Boolean(b.archived)};
+    const scope=String(b.scope||previous?.scope||'general');if(!/^(general|business-[a-zA-Z0-9-]{1,90})$/.test(scope))fail(400,'格納先が正しくありません。');
+    const doc={id:b.id,scope,title:b.title.trim(),category:String(b.category||'未分類').slice(0,80),summary:String(b.summary||'').slice(0,300),content:b.content,file,version,updatedAt:new Date().toISOString(),archived:Boolean(b.archived)};
     await sdk().put('manuals/'+b.id+'/revisions/'+version+'.json',JSON.stringify(doc),{access:'private',addRandomSuffix:false,contentType:'application/json',allowOverwrite:false});return json(res,200,{ok:true,manual:doc});
    }
    fail(400,'操作が正しくありません。');
