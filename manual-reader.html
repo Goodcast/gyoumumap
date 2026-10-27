@@ -5,7 +5,7 @@
 import * as pdfjs from './pdf.mjs';
 pdfjs.GlobalWorkerOptions.workerSrc='./pdf.worker.mjs';
 const params=new URLSearchParams(location.search),id=params.get('id');
-const name=id&&/^[a-f0-9-]{36}$/.test(id)?'/api/manuals?action=asset&id='+encodeURIComponent(id)+'&v='+encodeURIComponent(params.get('v')||''):params.get('file');
+const name=id&&/^[a-f0-9-]{36}$/.test(id)?'/api/manuals?action=asset&id='+encodeURIComponent(id)+'&v='+encodeURIComponent(params.get('v')||'')+(params.get('preview')==='1'?'&preview=1':''):params.get('file');
 const status=document.getElementById('status'),canvas=document.getElementById('paper'),field=document.getElementById('page');
 let pdf,page=Math.max(1,Number(params.get('page'))||1),zoom=1,running=false,queued=false;
 async function draw(){if(!pdf)return;if(running){queued=true;return;}running=true;status.textContent='表示中…';try{const p=await pdf.getPage(page),initial=p.getViewport({scale:1}),width=Math.max(220,document.documentElement.clientWidth-30),scale=width/initial.width*zoom,viewport=p.getViewport({scale}),ratio=Math.min(devicePixelRatio||1,2);canvas.width=Math.floor(viewport.width*ratio);canvas.height=Math.floor(viewport.height*ratio);canvas.style.width=viewport.width+'px';canvas.style.height=viewport.height+'px';await p.render({canvasContext:canvas.getContext('2d'),viewport,transform:[ratio,0,0,ratio,0,0]}).promise;field.value=page;document.getElementById('prev').disabled=page<=1;document.getElementById('next').disabled=page>=pdf.numPages;status.textContent='表示完了';}catch(e){status.textContent='表示できませんでした。PDF保存から確認してください。';}finally{running=false;if(queued){queued=false;draw();}}}
