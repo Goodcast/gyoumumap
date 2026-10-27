@@ -16,6 +16,8 @@ function createHandler(provided, env = process.env) {
  async function latest(id){if(!ID.test(id||''))fail(400,'資料IDが正しくありません。');const revisions=await all('manuals/'+id+'/revisions/');if(!revisions.length)fail(404,'資料が見つかりません。');revisions.sort((a,b)=>b.pathname.localeCompare(a.pathname));return read(revisions[0].pathname);}
  async function requested(url){const id=url.searchParams.get('id'),version=url.searchParams.get('v');if(!version)return latest(id);if(!ID.test(id||'')||!/^\d+-[a-f0-9-]{36}$/.test(version))fail(400,'資料の履歴指定が正しくありません。');return read('manuals/'+id+'/revisions/'+version+'.json');}
  async function accessible(req,url){const doc=await requested(url);const head=url.searchParams.has('v')?await latest(doc.id):doc;if(!authorized(req)&&(doc.visibility==='admin'||head.visibility==='admin'||head.archived))fail(404,'資料が見つかりません。');return doc;}
+ async function checkedFile(id,f,pdfOnly=false){if(!ID.test(f.uploadId||'')||(!TYPES.has(f.type)||(pdfOnly&&f.type!=='application/pdf'))||!Number.isInteger(f.size)||f.size<1||f.size>MAX_FILE||f.parts!==Math.ceil(f.size/MAX_PART)||typeof f.name!=='string'||f.name.length>200)fail(400,'ファイルが正しくありません。');
+     const blobs=await all('manuals/'+id+'/files/'+f.uploadId+'/');const parts=new Map(blobs.map(x=>[x.pathname,x.size]));let total=0;for(let i=0;i<f.parts;i++){const size=parts.get('manuals/'+id+'/files/'+f.uploadId+'/part-'+String(i).padStart(3,'0'));if(!size)fail(400,'ファイルの送信が完了していません。');total+=size;}if(total!==f.size)fail(400,'ファイルのサイズが一致しません。');return {name:f.name,type:f.type,size:f.size,parts:f.parts,uploadId:f.uploadId};}
  async function body(req){if(req.body&&typeof req.body==='object'&&!Buffer.isBuffer(req.body))return req.body;const chunks=[];let size=0;for await(const b of req){size+=b.length;if(size>3*1024*1024)fail(413,'送信データが大きすぎます。');chunks.push(b);}try{return JSON.parse(Buffer.concat(chunks).toString());}catch{fail(400,'送信形式が正しくありません。');}}
  return async function handler(req,res){
   res.setHeader('Cache-Control','no-store');res.setHeader('X-Content-Type-Options','nosniff');
@@ -39,7 +41,7 @@ function createHandler(provided, env = process.env) {
    }
    if(req.method==='GET'&&action==='read')return json(res,200,await accessible(req,url));
    if(req.method==='GET'&&action==='asset'){
-    const doc=await accessible(req,url);if(doc.archived||!doc.file)fail(404,'資料が見つかりません。');
+    const doc=await accessible(req,url);if(url.searchParams.get('preview')==='1')doc.file=doc.preview;if(doc.archived||!doc.file)fail(404,'資料が見つかりません。');
     if(doc.file.type==='text/html')res.setHeader('Content-Security-Policy',"sandbox; default-src 'none'; style-src 'unsafe-inline'; img-src data:; font-src data:;");res.setHeader('Content-Type',doc.file.type);res.setHeader('Content-Disposition','inline; filename="manual"');res.setHeader('Content-Length',doc.file.size);
     async function* stream(){for(let i=0;i<doc.file.parts;i++){const path='manuals/'+doc.id+'/files/'+doc.file.uploadId+'/part-'+String(i).padStart(3,'0');const r=await sdk().get(path,{access:'private',useCache:false});if(!r||r.statusCode!==200)throw Error('File missing');const reader=r.stream.getReader();try{while(true){const {done,value}=await reader.read();if(done)break;yield value;}}finally{reader.releaseLock();}}}
     return Readable.from(stream()).pipe(res);
@@ -91,15 +93,13 @@ function createHandler(provided, env = process.env) {
     if((previous?.version||null)!==(b.baseVersion||null))fail(409,'他の人が更新しました。一覧を再読み込みしてから編集してください。');
     if(typeof b.title!=='string'||!b.title.trim()||b.title.length>120)fail(400,'タイトルを1〜120文字で入力してください。');
     if(typeof b.content!=='string'||b.content.length>100000)fail(400,'本文は10万文字以内で入力してください。');
-    let file=previous?.file||null;
-    if(b.file){const f=b.file;if(!ID.test(f.uploadId||'')||!TYPES.has(f.type)||!Number.isInteger(f.size)||f.size<1||f.size>MAX_FILE||f.parts!==Math.ceil(f.size/MAX_PART)||typeof f.name!=='string'||f.name.length>200)fail(400,'ファイルが正しくありません。');
-     const blobs=await all('manuals/'+b.id+'/files/'+f.uploadId+'/');const parts=new Map(blobs.map(x=>[x.pathname,x.size]));let total=0;for(let i=0;i<f.parts;i++){const size=parts.get('manuals/'+b.id+'/files/'+f.uploadId+'/part-'+String(i).padStart(3,'0'));if(!size)fail(400,'ファイルの送信が完了していません。');total+=size;}if(total!==f.size)fail(400,'ファイルのサイズが一致しません。');file={name:f.name,type:f.type,size:f.size,parts:f.parts,uploadId:f.uploadId};
-    }
+    const file=b.file?await checkedFile(b.id,b.file):(previous?.file||null);
+    let preview=b.file&&b.file.uploadId!==previous?.file?.uploadId?null:(previous?.preview||null);if(b.preview===null)preview=null;else if(b.preview)preview=await checkedFile(b.id,b.preview,true);
     if(!b.content.trim()&&!file)fail(400,'本文かファイルを追加してください。');
     const version=Date.now().toString().padStart(13,'0')+'-'+randomUUID();
     const scope=String(b.scope||previous?.scope||'general');if(!/^(general|business-[a-zA-Z0-9-]{1,90})$/.test(scope))fail(400,'格納先が正しくありません。');
     const visibility=b.visibility??previous?.visibility??(previous?'public':'admin');if(!['admin','public'].includes(visibility))fail(400,'公開範囲が正しくありません。');
-    const doc={id:b.id,scope,visibility,title:b.title.trim(),category:String(b.category||'未分類').slice(0,80),summary:String(b.summary||'').slice(0,300),content:b.content,file,version,updatedAt:new Date().toISOString(),archived:Boolean(b.archived)};
+    const doc={id:b.id,scope,visibility,title:b.title.trim(),category:String(b.category||'未分類').slice(0,80),summary:String(b.summary||'').slice(0,300),content:b.content,file,preview,version,updatedAt:new Date().toISOString(),archived:Boolean(b.archived)};
     await sdk().put('manuals/'+b.id+'/revisions/'+version+'.json',JSON.stringify(doc),{access:'private',addRandomSuffix:false,contentType:'application/json',allowOverwrite:false});return json(res,200,{ok:true,manual:doc});
    }
    fail(400,'操作が正しくありません。');
